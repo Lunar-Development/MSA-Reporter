@@ -35,10 +35,14 @@ export default {
     border-bottom: 1px solid grey;
   }
 
+  input[type="username"], input[type="password"] {
+    font-size: 18px;
+    text-align: center;
+    padding: 0 0 5px 0;
+  }
+
   #login {
     margin-top: 30px;
     width: 50px;
-    font-size: 16px;
-    text-align: center;
   }
 </style>

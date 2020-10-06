@@ -1,1 +1,0 @@
-This is the MSA Reporter Vue/Node app.
