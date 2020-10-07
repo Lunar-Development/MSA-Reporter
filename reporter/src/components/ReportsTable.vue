@@ -1,7 +1,7 @@
 <template>
-  <div id="view-reports">
+  <div id="view-reports-table">
     <h1>
-      Hello, you've hit the reports view. Check the console.
+      Hi, I'm The Report Viewer
     </h1>
     <ul class="report-table">
       <li class="report-table-title">
@@ -15,10 +15,9 @@
       <li v-for="report in historicalReports.reports" :key="report.id">
         <router-link :to="{ name: 'Report', params: {id: report.id} }"
           tag="p"
-          id="login-radio-submit">
-
-          <div> {{ report.trainee }}</div>
-          <div> {{ report.date }}</div>
+          id="table-entry">
+            <div> {{ report.trainee }}</div>
+            <div> {{ report.date }}</div>
           </router-link>
       </li>
     </ul>
@@ -49,10 +48,10 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-#view-reports {
+#view-reports-table {
   display: flex;
+  height: 100vh;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -60,11 +59,12 @@ export default {
 
 .report-table {
   width: 600px;
+  overflow-y: scroll;
 }
 
 .report-table > li {
   list-style-type: none;
-  padding: 10px;
+  padding: 10px 20px 10px 20px;
   cursor: pointer;
 }
 
@@ -77,7 +77,7 @@ export default {
   background-color: rgb(236, 234, 234);
 }
 .report-table > li:nth-child(even) {
-  background-color: lightblue;
+  background-color: rgb(203, 227, 235);
 }
 
 .report-table-title {

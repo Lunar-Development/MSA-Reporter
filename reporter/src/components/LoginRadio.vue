@@ -54,6 +54,7 @@ export default {
     height: 100vh;
     align-items: center;
     justify-content: center;
+    margin-left: 400px;
   }
 
   .login-radio-buttons > button {

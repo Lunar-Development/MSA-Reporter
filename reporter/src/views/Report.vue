@@ -1,14 +1,19 @@
 <template>
   <div>
-    I'm a Report
+    <HeaderBar />
+    <p>
+      I'm a Report
+    </p>
   </div>
 </template>
 
 <script>
+import HeaderBar from '../components/HeaderBar.vue'
+
 export default {
   name: 'Report',
   components: {
-    
+    HeaderBar
   }
 }
 </script>

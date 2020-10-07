@@ -1,18 +1,21 @@
 <template>
-  <ReportsTable />
+  <div id="view-reports">
+    <HeaderBar />
+    <ReportsTable />
+  </div>
 </template>
 
 <script>
-import ReportsTable from '../components/ReportsTable.vue'
+import ReportsTable from '../components/ReportsTable.vue';
+import HeaderBar from '../components/HeaderBar.vue';
+
 export default {
   name: 'ViewReports',
   components: {
+    HeaderBar,
     ReportsTable
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 </style>
