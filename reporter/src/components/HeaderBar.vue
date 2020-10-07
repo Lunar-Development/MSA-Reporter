@@ -1,6 +1,5 @@
 <template>
   <div class="header-bar">
-    <img @click="logout()" id="logout" src='../assets/icons/logout.png' />
   </div>
 </template>
 

@@ -1,8 +1,20 @@
 <template>
   <div class="nav-bar" :class="{show: show}">
     <div @click="toggleView()" id="nav-bar-tab">
-      <img id="tab" src='../assets/icons/chevron.svg' />
+      <img id="tab-icon" src='../assets/icons/chevron.svg' />
     </div>
+    <div class="nav-selections">
+      <div>
+        Trainee
+      </div>
+      <div>
+        Crew
+      </div>
+      <div>
+        Site
+      </div>
+    </div>
+    
   </div>
 </template>
 
@@ -36,14 +48,25 @@ export default {
     height: 100vh;
     display: flex;
     align-items: center;
+    justify-content: center;
     box-shadow: 6px 7px 7px -8px;
     background-color: white;
-    transition: all 1s;
+    transition: all 0.6s;
   }
 
-  .nav-bar > * {
-    box-shadow: 6px 0 15px -8px;
+  .nav-selections {
+    width: 100%;
   }
+  .nav-selections > div {
+    background-color: white;
+    padding: 20px;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  .nav-selections > div:hover {
+    background-color: #DCDCDC;
+  }
+
   #nav-bar-tab {
     position: relative;
     display: flex;
@@ -56,9 +79,11 @@ export default {
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     background-color: white;
+    box-shadow: 6px 0 15px -8px;
     cursor: pointer;
   }
-  #tab {
+
+  #tab-icon {
     height: 30px;
   }
 
