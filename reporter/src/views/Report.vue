@@ -1,13 +1,14 @@
 <template>
-  <ReportsTable />
+  <div>
+    I'm a Report
+  </div>
 </template>
 
 <script>
-import ReportsTable from '../components/ReportsTable.vue'
 export default {
-  name: 'ViewReports',
+  name: 'Report',
   components: {
-    ReportsTable
+    
   }
 }
 </script>

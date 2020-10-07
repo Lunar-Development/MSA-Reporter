@@ -2,8 +2,6 @@
   <div id="login">
     <LoginBar />
     <LoginRadio />
-
-<router-view> </router-view>
   </div>
 </template>
 
