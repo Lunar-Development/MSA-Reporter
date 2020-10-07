@@ -17,7 +17,7 @@ export default {
   name: 'LoginRadio',
   data() {
     return {
-      chosenPath: {},
+      chosenPath: 'ViewReports',
       viewSelect: {
         selected: true
       },

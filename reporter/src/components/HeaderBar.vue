@@ -1,6 +1,6 @@
 <template>
   <div class="header-bar">
-    
+    <img @click="logout()" id="logout" src='../assets/icons/logout.png' />
   </div>
 </template>
 
@@ -16,6 +16,13 @@ export default {
     top: 0;
     width: 100vw;
     height: 80px;
-    background-color: rgba(244, 162, 97, 0.6);
+    background-color: #2A9D8F;
+    display: flex;
+    padding: 0 30px 0 30px;
+    align-items: center;
+  }
+
+  #logout {
+    height: 40px;
   }
 </style>

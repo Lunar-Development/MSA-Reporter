@@ -14,7 +14,7 @@
       </li>
       <li v-for="report in historicalReports.reports" :key="report.id">
         <router-link :to="{ name: 'Report', params: {id: report.id} }"
-          tag="p"
+          tag="div"
           id="table-entry">
             <div> {{ report.trainee }}</div>
             <div> {{ report.date }}</div>
@@ -36,7 +36,7 @@ export default {
   },
   beforeMount(){
     this.readHistoricalReports()
- },
+  },
   methods: {
     readHistoricalReports() {
       this.historicalReports = ReportHistory;
@@ -60,6 +60,7 @@ export default {
 .report-table {
   width: 600px;
   overflow-y: scroll;
+  border: 1px solid #2A9D8F;
 }
 
 .report-table > li {
@@ -69,15 +70,16 @@ export default {
 }
 
 .report-table > li > * {
+  line-height: 50px;
   display: flex;
   justify-content: space-between;
 }
 
-.report-table > li:nth-child(odd) {
+/* .report-table > li:nth-child(odd) {
   background-color: rgb(236, 234, 234);
-}
+} */
 .report-table > li:nth-child(even) {
-  background-color: rgb(203, 227, 235);
+  background-color: rgba(203, 227, 235, 0.3);
 }
 
 .report-table-title {
