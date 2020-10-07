@@ -1,9 +1,9 @@
 <template>
   <div class="login-bar">
-    <input type="username" />
-    <input type="password" />
+    <input placeholder="Username" type="username" />
+    <input placeholder="password" type="password" />
     <button>
-      <img id="login" src='../assets/icons/enter.svg' />
+      <img @click="login()" id="login" src='../assets/icons/enter.svg' />
     </button>
   </div>
 </template>
@@ -12,6 +12,11 @@
 export default {
   name: 'LoginBar',
   props: {
+  },
+  methods: {
+    login() {
+
+    }
   }
 }
 </script>
@@ -28,11 +33,15 @@ export default {
     align-items: center;
   }
   input {
-    width: 300px;
+    width: 70%;
     height: 30px;
     margin: 10px;
     border: 0;
     border-bottom: 1px solid grey;
+  }
+
+  button {
+    border: 0;
   }
 
   input[type="username"], input[type="password"] {

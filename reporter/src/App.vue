@@ -1,16 +1,19 @@
 <template>
   <div id="app">
     <LoginBar />
+    <LoginRadio />
   </div>
 </template>
 
 <script>
 import LoginBar from './components/LoginBar.vue'
+import LoginRadio from './components/LoginRadio.vue'
 
 export default {
   name: 'App',
   components: {
-    LoginBar
+    LoginBar,
+    LoginRadio
   }
 }
 </script>
@@ -28,14 +31,18 @@ h6 {
 button {
   background-color: white;
   border: 0;
-  border-radius: 50%;
+  padding: 20px;
+  border: 1px solid black;
   cursor: pointer;
+  border-radius: 15px;
 }
 input:focus {
     outline: none;
   }
 
 #app {
+  display: flex;
+  flex-direction: row;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
