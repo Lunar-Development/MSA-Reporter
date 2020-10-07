@@ -1,7 +1,7 @@
 <template>
   <div id="view-reports-table">
     <h1>
-      Hi, I'm The Report Viewer
+      Hi, I'm The {{ tableValue }} Report Viewer
     </h1>
     <ul class="report-table">
       <li class="report-table-title">
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import ReportHistory from '../data/report-history.json';
+import ReportHistoryTrainee from '../data/report-history-trainee.json';
 
 export default {
   name: 'ReportsTable',
@@ -34,12 +34,14 @@ export default {
       historicalReports: {}
     }
   },
+  props: ['tableValue'],
+
   beforeMount(){
     this.readHistoricalReports()
   },
   methods: {
     readHistoricalReports() {
-      this.historicalReports = ReportHistory;
+      this.historicalReports = ReportHistoryTrainee;
     },
     getHistroicalReports() {
       console.log(this.historicalReports)

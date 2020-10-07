@@ -4,13 +4,13 @@
       <img id="tab-icon" src='../assets/icons/chevron.svg' />
     </div>
     <div class="nav-selections">
-      <div>
+      <div @click="changeTableValue('trainee')">
         Trainee
       </div>
-      <div>
+      <div @click="changeTableValue('crew')">
         Crew
       </div>
-      <div>
+      <div @click="changeTableValue('site')">
         Site
       </div>
     </div>
@@ -23,7 +23,8 @@ export default {
   name: 'NavBar',
   data() {
     return {
-      show: false
+      show: false,
+      tableValue: 'trainee'
     }
   },
   methods: {
@@ -33,6 +34,9 @@ export default {
       } else {
         this.show = false;
       }
+    },
+    changeTableValue(tableValue) {
+      this.$emit('clicked', tableValue)
     }
   }
 }

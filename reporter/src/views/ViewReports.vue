@@ -1,8 +1,8 @@
 <template>
   <div id="view-reports">
     <HeaderBar />
-    <NavBar />
-    <ReportsTable />
+    <NavBar @clicked="handleTableValue"/>
+    <ReportsTable :tableValue="this.tableValue"/>
   </div>
 </template>
 
@@ -17,6 +17,16 @@ export default {
     NavBar,
     HeaderBar,
     ReportsTable
+  },
+  data() {
+    return {
+      tableValue: 'trainee'
+    }
+  },
+  methods: {
+    handleTableValue(value) {
+      this.tableValue = value;
+    }
   }
 }
 </script>

@@ -1,0 +1,58 @@
+{"reports": [
+        {
+            "date": "02/07/2020", 
+            "crew avg": "50/100",
+            "results": {
+                "excavator": "20",
+                "dump truck": "90",
+                "shovel": "67",
+                "safety": "0"
+            },
+            "id": 1
+        },
+        {
+            "date": "02/07/2020", 
+            "crew avg": "50/100",
+            "results": {
+                "excavator": "20",
+                "dump truck": "90",
+                "shovel": "67",
+                "safety": "0"
+            },
+            "id": 2
+        },
+        {
+            "date": "02/07/2020", 
+            "crew avg": "50/100",
+            "results": {
+                "excavator": "20",
+                "dump truck": "90",
+                "shovel": "67",
+                "safety": "0"
+            },
+            "id": 3
+        },
+        {
+            "date": "02/07/2020", 
+            "crew avg": "50/100",
+            "results": {
+                "excavator": "20",
+                "dump truck": "90",
+                "shovel": "67",
+                "safety": "0"
+            },
+            "id": 4
+        },
+        {
+            "date": "02/07/2020", 
+            "crew avg": "50/100",
+            "results": {
+                "excavator": "20",
+                "dump truck": "90",
+                "shovel": "67",
+                "safety": "0"
+            },
+            "id": 5
+        }
+    ]
+}
