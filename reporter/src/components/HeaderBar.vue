@@ -13,6 +13,7 @@ export default {
 <style scoped>
   .header-bar {
     position: fixed;
+    z-index: 99;
     top: 0;
     width: 100vw;
     height: 80px;

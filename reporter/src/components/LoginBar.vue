@@ -6,7 +6,6 @@
       <img @click="login()" id="login" src='../assets/icons/enter.svg' />
     </button>
   </div>
-  
 </template>
 
 <script>
@@ -28,13 +27,12 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   div.login-bar {
     position: absolute;
     top: 0;
     width: 100vw;
-    height: 300px;
+    height: 100vh;
     box-shadow: 6px 8px 7px -8px grey;
     display: flex;
     flex-direction: column;
@@ -56,7 +54,7 @@ export default {
   }
 
   .loggedIn {
-    top: -300px !important;
+    top: -1000px !important;
   }
 
   input[type="username"], input[type="password"] {

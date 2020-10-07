@@ -9,7 +9,6 @@
     id="login-radio-submit">
     <span>GO</span>
     </router-link>
-    <img id="msa-logo" src="../assets/msa-logo-3123x2391.png" />
   </div>
 </template>
 
@@ -55,13 +54,6 @@ export default {
     height: 100vh;
     align-items: center;
     justify-content: center;
-  }
-
-  #msa-logo {
-    position: absolute;
-    opacity: 0.05;
-    z-index: -1;
-    width: 50%;
   }
 
   .login-radio-buttons > button {

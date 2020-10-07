@@ -59,8 +59,11 @@ export default {
 
 .report-table {
   width: 600px;
+  max-height: 600px;
   overflow-y: scroll;
   border: 1px solid #2A9D8F;
+  border-radius: 10px;
+  box-shadow: 6px 8px 7px -8px grey;
 }
 
 .report-table > li {
@@ -75,9 +78,6 @@ export default {
   justify-content: space-between;
 }
 
-/* .report-table > li:nth-child(odd) {
-  background-color: rgb(236, 234, 234);
-} */
 .report-table > li:nth-child(even) {
   background-color: rgba(203, 227, 235, 0.3);
 }
