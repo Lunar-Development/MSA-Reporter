@@ -40,7 +40,8 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    transition: 1s;
+    transition: top 1s;
+    background-color: white;
   }
   input {
     width: 40%;

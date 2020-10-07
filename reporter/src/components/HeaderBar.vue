@@ -16,7 +16,7 @@ export default {
     top: 0;
     width: 100vw;
     height: 80px;
-    background-color: #2A9D8F;
+    background-color: rgba(66, 118, 139, 1);
     display: flex;
     padding: 0 30px 0 30px;
     align-items: center;

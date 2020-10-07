@@ -9,6 +9,7 @@
     id="login-radio-submit">
     <span>GO</span>
     </router-link>
+    <img id="msa-logo" src="../assets/msa-logo-3123x2391.png" />
   </div>
 </template>
 
@@ -56,18 +57,24 @@ export default {
     justify-content: center;
   }
 
+  #msa-logo {
+    position: absolute;
+    opacity: 0.05;
+    z-index: -1;
+    width: 50%;
+  }
+
   .login-radio-buttons > button {
     width: 300px;
     font-size: 22px;
     border-radius: 0;
-    opacity: 0.4;
     transition: 0.1s;
-    border-color: #2A9D8F;
+    border-color: lightgray;
   }
 
   .selected {
     color: white;
-    background-color: #2A9D8F;
+    background-color: rgba(66, 118, 139, 1);
     opacity: 1 !important;
   }
 
