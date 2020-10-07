@@ -1,21 +1,28 @@
 <template>
-  <div class="login-bar">
+  <div class="login-bar" :class="{loggedIn: loggedIn}">
     <input placeholder="Username" type="username" />
     <input placeholder="password" type="password" />
     <button>
       <img @click="login()" id="login" src='../assets/icons/enter.svg' />
     </button>
   </div>
+  
 </template>
 
 <script>
 export default {
   name: 'LoginBar',
-  props: {
+  data() {
+    return {
+      loggedIn: false
+    }
   },
   methods: {
-    login() {
+    validate() {
 
+    },
+    login() {
+      this.loggedIn = true;
     }
   }
 }
@@ -24,13 +31,16 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   div.login-bar {
-    width: 500px;
+    position: absolute;
+    left: 0;
+    width: 400px;
     height: 100vh;
     box-shadow: 6px 0 7px -8px grey;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    transition: 1s;
   }
   input {
     width: 70%;
@@ -44,9 +54,12 @@ export default {
     border: 0;
   }
 
+  .loggedIn {
+    left: -600px !important;
+  }
+
   input[type="username"], input[type="password"] {
     font-size: 18px;
-    text-align: center;
     padding: 0 0 5px 0;
   }
 

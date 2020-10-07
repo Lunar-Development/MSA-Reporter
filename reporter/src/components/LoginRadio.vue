@@ -41,9 +41,10 @@ export default {
 <style scoped>
   #login-radio {
     display: flex;
+    width: 100%;
+    height: 100vh;
     align-items: center;
     justify-content: center;
-    width: 100%;
   }
 
   .login-radio-buttons > button {
@@ -52,6 +53,7 @@ export default {
     border-radius: 0;
     opacity: 0.4;
     transition: 0.1s;
+    border-color: #2A9D8F;
   }
 
   .selected {
