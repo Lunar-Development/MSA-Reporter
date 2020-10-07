@@ -32,10 +32,10 @@ export default {
 <style scoped>
   div.login-bar {
     position: absolute;
-    left: 0;
-    width: 400px;
-    height: 100vh;
-    box-shadow: 6px 0 7px -8px grey;
+    top: 0;
+    width: 100vw;
+    height: 300px;
+    box-shadow: 6px 8px 7px -8px grey;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -43,7 +43,7 @@ export default {
     transition: 1s;
   }
   input {
-    width: 70%;
+    width: 40%;
     height: 30px;
     margin: 10px;
     border: 0;
@@ -55,7 +55,7 @@ export default {
   }
 
   .loggedIn {
-    left: -600px !important;
+    top: -300px !important;
   }
 
   input[type="username"], input[type="password"] {
