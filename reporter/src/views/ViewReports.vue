@@ -20,7 +20,7 @@ export default {
   },
   data() {
     return {
-      tableValue: 'trainee'
+      tableValue: 'Trainee'
     }
   },
   methods: {

@@ -1,7 +1,7 @@
 {"reports": [
         {
             "date": "02/07/2020", 
-            "trainee": "John Doe", 
+            "name": "John Doe", 
             "trainer": "Bob Builder", 
             "results": {
                 "Session One": "PASS",
@@ -12,7 +12,7 @@
         },
         {
             "date": "11/12/2019", 
-            "trainee": "Jayne Power", 
+            "name": "Jayne Power", 
             "trainer": "Bob Builder", 
             "results": {
                 "Session One": "PASS",
@@ -23,7 +23,7 @@
         },
         {
             "date": "03/09/2019", 
-            "trainee": "Heleena Builder", 
+            "name": "Heleena Builder", 
             "trainer": "Ted Strongman", 
             "results": {
                 "Session One": "PASS",
@@ -34,7 +34,7 @@
         },
         {
             "date": "11/06/2020", 
-            "trainee": "Robert Mister", 
+            "name": "Robert Mister", 
             "trainer": "Ted Strongman", 
             "results": {
                 "Session One": "PASS",
@@ -45,7 +45,7 @@
         },
         {
             "date": "11/12/2019", 
-            "trainee": "Jayne Power", 
+            "name": "Jayne Power", 
             "trainer": "Bob Builder", 
             "results": {
                 "Session One": "PASS",
@@ -56,7 +56,7 @@
         },
         {
             "date": "03/09/2019", 
-            "trainee": "Heleena Builder", 
+            "name": "Heleena Builder", 
             "trainer": "Ted Strongman", 
             "results": {
                 "Session One": "PASS",
@@ -67,7 +67,7 @@
         },
         {
             "date": "11/06/2020", 
-            "trainee": "Robert Mister", 
+            "name": "Robert Mister", 
             "trainer": "Ted Strongman", 
             "results": {
                 "Session One": "PASS",

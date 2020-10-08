@@ -6,7 +6,7 @@
     <ul class="report-table">
       <li class="report-table-title">
         <div>
-          Trainee Name
+          {{ tableValue }} Name
         </div>
         <div>
           Date
@@ -16,7 +16,7 @@
         <router-link :to="{ name: 'Report', params: {id: report.id} }"
           tag="div"
           id="table-entry">
-            <div> {{ report.trainee }}</div>
+            <div> {{ report.name }}</div>
             <div> {{ report.date }}</div>
           </router-link>
       </li>
@@ -25,7 +25,9 @@
 </template>
 
 <script>
-import ReportHistoryTrainee from '../data/report-history-trainee.json';
+import Trainee from '../data/report-history-trainee.json';
+import Crew from '../data/report-history-crew.json';
+import Site from '../data/report-history-site.json'
 
 export default {
   name: 'ReportsTable',
@@ -39,12 +41,27 @@ export default {
   beforeMount(){
     this.readHistoricalReports()
   },
+
+  watch: {
+    tableValue: {
+      immediate: true, 
+      handler () {
+        this.readHistoricalReports()
+      }
+    }
+  },
+
   methods: {
     readHistoricalReports() {
-      this.historicalReports = ReportHistoryTrainee;
-    },
-    getHistroicalReports() {
-      console.log(this.historicalReports)
+      if (this.tableValue == 'Trainee')
+      {
+        this.historicalReports = Trainee;
+      } else if (this.tableValue == 'Crew')
+      {
+        this.historicalReports = Crew;
+      } else {
+        this.historicalReports = Site;
+      }
     }
   }
 }

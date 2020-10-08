@@ -4,13 +4,13 @@
       <img id="tab-icon" src='../assets/icons/chevron.svg' />
     </div>
     <div class="nav-selections">
-      <div @click="changeTableValue('trainee')">
+      <div @click="changeTableValue('Trainee')">
         Trainee
       </div>
-      <div @click="changeTableValue('crew')">
+      <div @click="changeTableValue('Crew')">
         Crew
       </div>
-      <div @click="changeTableValue('site')">
+      <div @click="changeTableValue('Site')">
         Site
       </div>
     </div>
