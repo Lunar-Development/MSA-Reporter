@@ -45,7 +45,7 @@ export default {
   },
   methods: {
     async findReportData() {
-      let urlParams = this.$router.currentRoute.path.split('/').splice(1)
+      let urlParams = this.$router.currentRoute.path.split('/').splice(1);
       this.reportParams.title = urlParams[0];
       this.reportParams.category = urlParams[1];
       this.reportParams.id = urlParams[2];

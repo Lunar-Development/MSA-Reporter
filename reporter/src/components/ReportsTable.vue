@@ -53,13 +53,14 @@ export default {
 
   methods: {
     readHistoricalReports() {
-      if (this.tableValue == 'Trainee')
-      {
+      switch(this.tableValue){
+      case 'Trainee':
         this.historicalReports = Trainee;
-      } else if (this.tableValue == 'Crew')
-      {
+        break;
+      case 'Crew':
         this.historicalReports = Crew;
-      } else {
+        break;
+      case 'Site':
         this.historicalReports = Site;
       }
     }
