@@ -13,7 +13,7 @@
         </div>
       </li>
       <li v-for="report in historicalReports.reports" :key="report.id">
-        <router-link :to="{ name: 'Report', params: {id: report.id} }"
+        <router-link :to="{ name: 'Report', params: {category: tableValue, id: report.id} }"
           tag="div"
           id="table-entry">
             <div> {{ report.name }}</div>

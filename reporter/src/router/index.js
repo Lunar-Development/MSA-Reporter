@@ -28,7 +28,7 @@ const routes = [
     component: CreateReports
   },
   {
-    path: '/report/:id',
+    path: '/report/:category/:id',
     name: 'Report',
     component: Report,
     props: true
