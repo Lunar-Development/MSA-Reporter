@@ -12,6 +12,10 @@ export default {
 </script>
 <style>
 
+.container {
+  padding: 80px 40px 80px 40px;
+}
+
 ul {
   padding-left: 0;
 }
