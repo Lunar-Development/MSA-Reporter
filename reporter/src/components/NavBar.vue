@@ -23,7 +23,7 @@ export default {
   name: 'NavBar',
   data() {
     return {
-      show: false,
+      show: true,
       tableValue: 'trainee'
     }
   },

@@ -6,7 +6,7 @@ export default class Firebase {
     require('firebase/auth')
     require('firebase/firestore')
     
-    //firebase config
+    //firbase config
 
     this.data = '';
   }

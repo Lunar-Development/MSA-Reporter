@@ -18,11 +18,8 @@
 </template>
 
 <script>
-import Trainee from '../data/report-history-trainee.json';
-import Crew from '../data/report-history-crew.json';
-import Site from '../data/report-history-site.json';
-
 import HeaderBar from '../components/HeaderBar.vue';
+import Firebase from '../database/Firebase.js';
 
 export default {
   name: 'Report',
@@ -52,16 +49,17 @@ export default {
 
       return this.reportParams;
     },
-    setReportData() {
+    async setReportData() {
+      this.firebaseConnection = new Firebase();
       switch(this.reportParams.category){
       case 'Trainee':
-        this.reportKeys = Trainee;
+        this.reportKeys = await this.firebaseConnection.readData('Reports', 'Trainee')
         break;
       case 'Crew':
-        this.reportKeys = Crew;
+        this.reportKeys = await this.firebaseConnection.readData('Reports', 'Crew')
         break;
       case 'Site':
-        this.reportKeys = Site;
+        this.reportKeys = await this.firebaseConnection.readData('Reports', 'Site')
       }
       this.report = this.reportKeys.reports.filter(report => this.reportParams.id == report.id)[0];
     }
