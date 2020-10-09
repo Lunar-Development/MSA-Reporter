@@ -13,6 +13,8 @@
           {{ report.results }}
         </li>
       </ul>
+      <button>SAVE</button>
+      <button>PRINT</button>
     </div>
   </div>
 </template>

@@ -71,6 +71,10 @@ export default {
     background-color: #DCDCDC;
   }
 
+  .selected {
+    background-color: #DCDCDC;
+  }
+
   #nav-bar-tab {
     position: relative;
     display: flex;
