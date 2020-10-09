@@ -12,7 +12,7 @@
           Date
         </div>
       </li>
-      <li v-for="report in historicalReports.reports" :key="report.id">
+      <li v-for="report in reportCollection[tableValue].reports" :key="report.id">
         <router-link :to="{ name: 'Report', params: {category: tableValue, id: report.id} }"
           tag="div"
           id="table-entry">
@@ -25,43 +25,60 @@
 </template>
 
 <script>
-import Trainee from '../data/report-history-trainee.json';
-import Crew from '../data/report-history-crew.json';
-import Site from '../data/report-history-site.json'
+import Firebase from '../database/Firebase.js';
 
 export default {
   name: 'ReportsTable',
   data() {
     return {
-      historicalReports: {}
+      historicalReports: {},
+      reportCollection: {
+        'Trainee': '',
+        'Crew': '',
+        'Site': ''
+      },
+      firebaseConnection: {}
     }
   },
   props: ['tableValue'],
 
   beforeMount(){
-    this.readHistoricalReports()
+    this.getDataFromDatabase()
   },
-
   watch: {
     tableValue: {
       immediate: true, 
       handler () {
         this.readHistoricalReports()
       }
+    },
+    reportCollection: {
+      immediate: true, 
+      handler () {
+        console.log('values updated')
+        console.log(this.reportCollection)
+      }
     }
   },
-
   methods: {
-    readHistoricalReports() {
-      switch(this.tableValue){
+    async getDataFromDatabase() 
+    {
+      this.firebaseConnection = new Firebase();
+      this.reportCollection.Trainee = await this.firebaseConnection.readData('Reports', 'Trainee')
+      this.reportCollection.Crew = await this.firebaseConnection.readData('Reports', 'Crew')
+      this.reportCollection.Site = await this.firebaseConnection.readData('Reports', 'Site')
+    },
+    readHistoricalReports()
+    {
+      switch(this.tableValue) {
       case 'Trainee':
-        this.historicalReports = Trainee;
+        console.log(this.reportCollection.trainee);
         break;
       case 'Crew':
-        this.historicalReports = Crew;
+        console.log(this.reportCollection);
         break;
       case 'Site':
-        this.historicalReports = Site;
+        console.log(this.reportCollection);
       }
     }
   }

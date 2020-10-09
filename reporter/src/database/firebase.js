@@ -1,4 +1,5 @@
-class Firebase {
+export default class Firebase {
+  // class Firebase {
   constructor()
   {
     this.firebase = require('firebase/app')
@@ -11,33 +12,32 @@ class Firebase {
   }
 
   async makeConnection() {
+    if (!this.firebase.apps.length) {
     this.firebase.initializeApp(this.firebaseConfig)
+    }
     this.db = this.firebase.firestore()
     this.auth = this.firebase.auth()
     return;
   }
 
-  getCollection = async (collection, document) => {
+  getCollection = (collection, document) => {
     let docRef = this.db.collection(collection).doc(document);
     return new Promise(resolve => {
       docRef.get().then(doc => {
         if (doc.exists) {
-          this.data = doc.data();
-          resolve(this.data)
-        } else {
-            console.log("No such document!");
+          resolve(doc.data())
         }
-        }).catch(function(error) {
-          console.log("Error getting document:", error);
-      })
     });
-  }
+  })
+}
 
   readData = async (collection, document) => {
-    this.makeConnection()
-    .then(async () => {
-      await this.getCollection(collection, document);
-      console.log(this.data)
+    return new Promise(resolve => {
+      this.makeConnection()
+      .then(async () => {
+        this.data = await this.getCollection(collection, document)
+        resolve(this.data)
+      })
     })
   }
 
@@ -48,11 +48,8 @@ class Firebase {
       docRef.set(data)
     })
   }
-
-  editData = (collection, document, newData) => {
-    this.data = newData;
-    this.writeData(collection, document, newData)
-  }
 }
 
-module.exports.Firebase = Firebase;
+
+
+// module.exports.Firebase = Firebase;
