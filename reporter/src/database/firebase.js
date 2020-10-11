@@ -13,7 +13,7 @@ export default class Firebase {
 
   async makeConnection() {
     if (!this.firebase.apps.length) {
-    this.firebase.initializeApp(this.firebaseConfig)
+      this.firebase.initializeApp(this.firebaseConfig)
     }
     this.db = this.firebase.firestore()
     this.auth = this.firebase.auth()
@@ -49,7 +49,5 @@ export default class Firebase {
     })
   }
 }
-
-
 
 // module.exports.Firebase = Firebase;
