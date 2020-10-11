@@ -1,9 +1,9 @@
 <template>
-  <div id="create-reports">
+  <div id="action-dashboard">
     <HeaderBar />
     <div class="container">
       <h1>
-        Create New Report
+        Action!
       </h1>
     </div>
   </div>
@@ -13,7 +13,7 @@
 import HeaderBar from '../components/HeaderBar.vue';
 
 export default {
-  name: 'ViewReports',
+  name: 'ActionDashboard',
   components: {
     HeaderBar
   }

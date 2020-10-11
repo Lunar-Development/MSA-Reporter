@@ -39,7 +39,7 @@ export default {
         this.viewSelect.selected = false;
       }
       this.createSelect.selected = true;
-      this.chosenPath = 'CreateReports';
+      this.chosenPath = 'ActionDashboard';
     },
   }
 }

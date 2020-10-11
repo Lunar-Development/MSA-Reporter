@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from '../views/Login.vue'
 import ViewReports from '../views/ViewReports.vue'
-import CreateReports from '../views/CreateReports.vue'
+import ActionDashboard from '../views/ActionDashboard.vue'
 import Report from '../views/Report.vue'
 
 Vue.use(VueRouter)
@@ -23,9 +23,9 @@ const routes = [
     component: ViewReports
   },
   {
-    path: '/CreateReports',
-    name: 'CreateReports',
-    component: CreateReports
+    path: '/ActionDashboard',
+    name: 'ActionDashboard',
+    component: ActionDashboard
   },
   {
     path: '/report/:category/:id',
