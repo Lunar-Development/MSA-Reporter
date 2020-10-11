@@ -1,0 +1,50 @@
+{"Sites": [
+        {
+            "Site 1": {
+                "crews": [
+                    {
+                        "Crew A": {
+                            "reports": []
+                        },
+                        "Crew B": {
+                            "reports": []
+                        },
+                        "Crew C": {
+                            "reports": []
+                        }
+                    }
+                ]
+            },
+            "Site 2": {
+                "crews": [
+                    {
+                        "Crew A": {
+                            "reports": []
+                        },
+                        "Crew B": {
+                            "reports": []
+                        },
+                        "Crew C": {
+                            "reports": []
+                        }
+                    }
+                ]
+            },
+            "Site 3": {
+                "crews": [
+                    {
+                        "Crew A": {
+                            "reports": []
+                        },
+                        "Crew B": {
+                            "reports": []
+                        },
+                        "Crew C": {
+                            "reports": []
+                        }
+                    }
+                ]
+            },
+        }
+    ]   
+} 
