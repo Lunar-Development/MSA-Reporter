@@ -1,9 +1,11 @@
 <template>
-  <div class="new-subject">
+  <div class="new-subject" :class="{show: show}">
+    <div @click="toggleView()" id="new-subject-tab">
+      <img id="tab-icon" src='../assets/icons/chevron.svg' />
+    </div>
     <h1>
       CREATE NEW
     </h1>
-    <div class="split">
       <div>
         <button @click='showModal({"Trainee": {"1": "Site", "2": "Crew", "3": "Name"}})'>
           Trainee
@@ -14,8 +16,7 @@
         <button @click='showModal({"Site": {"1": "Name"}})'>
           Site
         </button>
-      </div>
-    <AddSubject :subject="this.addSubjectContent"/>
+      <AddSubject :subject="this.addSubjectContent"/>
     </div>
   </div>
 </template>
@@ -29,43 +30,61 @@ export default {
   },
   data() {
     return {
+      show: false,
       addSubjectContent: {"Trainee": {"1": "Site", "2": "Crew", "3": "Name"}}
     }
   },
   methods: {
-    showModal(content) {
-      this.addSubjectContent = content;
-    }
+    toggleView() {
+      if (!this.show) {
+        this.show = true;
+      } else {
+        this.show = false;
+      }
+    },
   }
 }
 </script>
 
 <style scoped>
   .new-subject {
-    padding: 100px 0 100px 0;
-    height: calc(100vh - 200px);
+    position: fixed;
+    z-index: 0;
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 100vh;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    border: 1px solid black;
+    justify-content: center;
+    box-shadow: 6px 7px 7px -8px;
+    background-color: white;
+    transition: all 0.6s;
   }
 
-  div.split {
-    height: 90%;
-    width: 100%;
+  #new-subject-tab {
+    position: relative;
+    z-index: 99;
     display: flex;
+    align-items: center;
     justify-content: center;
-    flex-wrap: wrap;
-    flex-direction: column;
+    top: -250px;
+    left: 500px;
+    width: 50px;
+    height: 50px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: white;
+    box-shadow: 6px 0 15px -8px;
+    cursor: pointer;
   }
 
-  div.split > div {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  #tab-icon {
+    height: 30px;
+  }
+
+  .show {
+    left: -500px !important;
   }
 
   button {

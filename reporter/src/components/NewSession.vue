@@ -33,5 +33,10 @@ export default {
 </script>
 
 <style scoped>
-  /*  */
+  #new-session {
+    display: flex;
+    /* height: calc(100vh - 200px); */
+    justify-content: center;
+    align-items: center;
+  }
 </style>

@@ -44,7 +44,7 @@ export default {
   },
   beforeMount(){
     // this.writeDataToDatabase('Subjects', 'Crews', )
-    // this.getDataFromDatabase();
+    this.getDataFromDatabase();
   },
   watch: {
     subject: {

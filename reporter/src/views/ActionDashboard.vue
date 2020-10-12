@@ -31,10 +31,13 @@ export default {
     display: flex;
   }
 
-  .split > div:nth-child(1) {
-    width: 40%;
+  .split > div {
+    background-color: white;
   }
-  .split > div:nth-child(2) {
-    width: 60%;
+
+  .split > div:nth-child(1) {
+    position: absolute;
+    left: 0;
+    width: 500px;
   }
 </style>
