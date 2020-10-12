@@ -2,6 +2,8 @@
         {
             "Trainee A": {
                 "id": "1",
+                "site": "Site 1",
+                "crew": "Crew A",
                 "reports": [
                     {
                         "02/07/1995": {
@@ -17,6 +19,8 @@
         {
             "Trainee B": {
                 "id": "2",
+                "site": "Site 1",
+                "crew": "Crew B",
                 "reports": [
                     {
                         "09/11/2019": {
@@ -32,6 +36,8 @@
         {
             "Trainee C": {
                 "id": "3",
+                "site": "Site 3",
+                "crew": "Crew A",
                 "reports": [
                     {
                         "09/11/2019": {

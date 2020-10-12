@@ -17,7 +17,7 @@
       </li>
     </ul>
     
-    <button @click="createObjectAndMergeWithDatabase()">
+    <button :class="{invalid: !validated}" @click="createObjectAndMergeWithDatabase()">
       Submit
     </button>
   </div>
@@ -35,6 +35,7 @@ export default {
       crewSelected: undefined,
       nameSelected: undefined,
 
+      validated: false,
       subjectName: '',
       siteData: '',
       crewData: '',
@@ -42,6 +43,7 @@ export default {
     }
   },
   beforeMount(){
+    // this.writeDataToDatabase('Subjects', 'Crews', )
     this.getDataFromDatabase();
   },
   watch: {
@@ -49,6 +51,24 @@ export default {
       immediate: true, 
       handler () {
         this.setInputs()
+      }
+    },
+    nameSelected: {
+      immediate: true, 
+      handler () {
+        this.enableSubmit()
+      }
+    },
+    crewSelected: {
+      immediate: true, 
+      handler () {
+        this.enableSubmit()
+      }
+    },
+    siteSelected: {
+      immediate: true, 
+      handler () {
+        this.enableSubmit()
       }
     }
   },
@@ -69,34 +89,87 @@ export default {
       this.firebaseConnection = new Firebase();
       this.firebaseConnection.writeData(subject, doc, data)
     },
-    createObjectAndMergeWithDatabase() {
-      //validate inputs
+    enableSubmit() {
       switch(this.subjectName) {
       case 'Trainee':
         if (this.siteSelected && this.crewSelected && this.nameSelected)
         {
-          //write to database
-        } else {
-          //ui invalid field
-          console.log('invalid')
+          this.validated = true;
         }
         break;
       case 'Crew':
         if (this.siteSelected && this.nameSelected)
         {
-          //write to database
-        } else {
-          //ui invalid field
-          console.log('invalid')
+          this.validated = true;
         }
         break;
       case 'Site':
         if (this.nameSelected)
         {
-          //write to database
-        } else {
-          //ui invalid field
-          console.log('invalid')
+          this.validated = true;
+        }
+        break;
+      }
+    },
+    createObjectAndMergeWithDatabase() {
+      switch(this.subjectName) {
+        case 'Trainee': {
+          //get last trainee ID
+          let lastTraineeName = Object.keys(this.traineeData.Trainees[this.traineeData.Trainees.length - 1])
+          let lastTraineeID = this.traineeData.Trainees[this.traineeData.Trainees.length - 1][lastTraineeName].id;
+
+          let newTrainee = {};
+          newTrainee[this.nameSelected] = {};
+          newTrainee[this.nameSelected].site = this.siteSelected;
+          newTrainee[this.nameSelected].crew = this.crewSelected;
+          newTrainee[this.nameSelected].reports = [];
+          newTrainee[this.nameSelected].id = (parseInt(lastTraineeID) + 1).toString();
+
+          //push to trainees array
+          this.traineeData.Trainees.push(newTrainee)
+          console.log(this.traineeData.Trainees)
+
+          //TODO: submit to db
+          this.writeDataToDatabase('Subjects', 'Trainees', this.traineeData)
+        break;
+        }
+          
+        case 'Crew': {
+          //get last trainee ID
+          let lastCrewName = Object.keys(this.crewData.Crews[this.crewData.Crews.length - 1])
+          let lastCrewID = this.crewData.Crews[this.crewData.Crews.length - 1][lastCrewName].id;
+
+          let newCrew = {};
+          newCrew[this.nameSelected] = {};
+          newCrew[this.nameSelected].site = this.siteSelected;
+          newCrew[this.nameSelected].trainees = [];
+          newCrew[this.nameSelected].id = (parseInt(lastCrewID) + 1).toString();
+
+          //push to crews array
+          this.crewData.Crews.push(newCrew)
+          console.log(this.crewData.Crews)
+
+          //TODO: submit to db
+          this.writeDataToDatabase('Subjects', 'Crews', this.crewData)
+        break;
+        }
+          
+          case 'Site': {
+          //get last trainee ID
+          let lastSiteName = Object.keys(this.siteData.Sites[this.siteData.Sites.length - 1])
+          let lastSiteID = this.siteData.Sites[this.siteData.Sites.length - 1][lastSiteName].id;
+
+          let newSite = {};
+          newSite[this.nameSelected] = {};
+          newSite[this.nameSelected].Crews = [];
+          newSite[this.nameSelected].id = (parseInt(lastSiteID) + 1).toString();
+
+          //push to sites array
+          this.siteData.Sites.push(newSite)
+
+          //TODO: submit to db
+          this.writeDataToDatabase('Subjects', 'Sites', this.siteData)
+        break;
         }
       }
     }
@@ -114,6 +187,10 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center; 
+  }
+
+  .invalid {
+    opacity: 0.1;
   }
 
   h1 {

@@ -7,7 +7,6 @@ export default class Firebase {
     require('firebase/firestore')
     
     //firbase config
-    
 
     this.data = '';
   }
