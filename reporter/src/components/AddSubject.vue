@@ -44,7 +44,7 @@ export default {
   },
   beforeMount(){
     // this.writeDataToDatabase('Subjects', 'Crews', )
-    this.getDataFromDatabase();
+    // this.getDataFromDatabase();
   },
   watch: {
     subject: {
@@ -112,64 +112,64 @@ export default {
       }
     },
     createObjectAndMergeWithDatabase() {
-      switch(this.subjectName) {
-        case 'Trainee': {
-          //get last trainee ID
-          let lastTraineeName = Object.keys(this.traineeData.Trainees[this.traineeData.Trainees.length - 1])
-          let lastTraineeID = this.traineeData.Trainees[this.traineeData.Trainees.length - 1][lastTraineeName].id;
+      if (this.validated) {
+        switch(this.subjectName) {
+          case 'Trainee': {
+            //get last trainee ID
+            let lastTraineeName = Object.keys(this.traineeData.Trainees[this.traineeData.Trainees.length - 1])
+            let lastTraineeID = this.traineeData.Trainees[this.traineeData.Trainees.length - 1][lastTraineeName].id;
 
-          let newTrainee = {};
-          newTrainee[this.nameSelected] = {};
-          newTrainee[this.nameSelected].site = this.siteSelected;
-          newTrainee[this.nameSelected].crew = this.crewSelected;
-          newTrainee[this.nameSelected].reports = [];
-          newTrainee[this.nameSelected].id = (parseInt(lastTraineeID) + 1).toString();
+            let newTrainee = {};
+            newTrainee[this.nameSelected] = {};
+            newTrainee[this.nameSelected].site = this.siteSelected;
+            newTrainee[this.nameSelected].crew = this.crewSelected;
+            newTrainee[this.nameSelected].reports = [];
+            newTrainee[this.nameSelected].id = (parseInt(lastTraineeID) + 1).toString();
 
-          //push to trainees array
-          this.traineeData.Trainees.push(newTrainee)
-          console.log(this.traineeData.Trainees)
+            //push to trainees array
+            this.traineeData.Trainees.push(newTrainee)
 
-          //TODO: submit to db
-          this.writeDataToDatabase('Subjects', 'Trainees', this.traineeData)
-        break;
-        }
-          
-        case 'Crew': {
-          //get last trainee ID
-          let lastCrewName = Object.keys(this.crewData.Crews[this.crewData.Crews.length - 1])
-          let lastCrewID = this.crewData.Crews[this.crewData.Crews.length - 1][lastCrewName].id;
+            //TODO: submit to db
+            this.writeDataToDatabase('Subjects', 'Trainees', this.traineeData)
+          break;
+          }
+            
+          case 'Crew': {
+            //get last trainee ID
+            let lastCrewName = Object.keys(this.crewData.Crews[this.crewData.Crews.length - 1])
+            let lastCrewID = this.crewData.Crews[this.crewData.Crews.length - 1][lastCrewName].id;
 
-          let newCrew = {};
-          newCrew[this.nameSelected] = {};
-          newCrew[this.nameSelected].site = this.siteSelected;
-          newCrew[this.nameSelected].trainees = [];
-          newCrew[this.nameSelected].id = (parseInt(lastCrewID) + 1).toString();
+            let newCrew = {};
+            newCrew[this.nameSelected] = {};
+            newCrew[this.nameSelected].site = this.siteSelected;
+            newCrew[this.nameSelected].trainees = [];
+            newCrew[this.nameSelected].id = (parseInt(lastCrewID) + 1).toString();
 
-          //push to crews array
-          this.crewData.Crews.push(newCrew)
-          console.log(this.crewData.Crews)
+            //push to crews array
+            this.crewData.Crews.push(newCrew)
 
-          //TODO: submit to db
-          this.writeDataToDatabase('Subjects', 'Crews', this.crewData)
-        break;
-        }
-          
-          case 'Site': {
-          //get last trainee ID
-          let lastSiteName = Object.keys(this.siteData.Sites[this.siteData.Sites.length - 1])
-          let lastSiteID = this.siteData.Sites[this.siteData.Sites.length - 1][lastSiteName].id;
+            //TODO: submit to db
+            this.writeDataToDatabase('Subjects', 'Crews', this.crewData)
+          break;
+          }
+            
+            case 'Site': {
+            //get last trainee ID
+            let lastSiteName = Object.keys(this.siteData.Sites[this.siteData.Sites.length - 1])
+            let lastSiteID = this.siteData.Sites[this.siteData.Sites.length - 1][lastSiteName].id;
 
-          let newSite = {};
-          newSite[this.nameSelected] = {};
-          newSite[this.nameSelected].Crews = [];
-          newSite[this.nameSelected].id = (parseInt(lastSiteID) + 1).toString();
+            let newSite = {};
+            newSite[this.nameSelected] = {};
+            newSite[this.nameSelected].Crews = [];
+            newSite[this.nameSelected].id = (parseInt(lastSiteID) + 1).toString();
 
-          //push to sites array
-          this.siteData.Sites.push(newSite)
+            //push to sites array
+            this.siteData.Sites.push(newSite)
 
-          //TODO: submit to db
-          this.writeDataToDatabase('Subjects', 'Sites', this.siteData)
-        break;
+            //TODO: submit to db
+            this.writeDataToDatabase('Subjects', 'Sites', this.siteData)
+          break;
+          }
         }
       }
     }
@@ -178,34 +178,5 @@ export default {
 </script>
 
 <style scoped>
-  #add-subject {
-    border: 1px solid grey;
-    border-radius: 15px;
-    width: 90%;
-    margin-top: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; 
-  }
 
-  .invalid {
-    opacity: 0.1;
-  }
-
-  h1 {
-    font-weight: 300
-  }
-
-  li {
-    list-style-type: none;
-  }
-
-  input {
-    font-size: 20px;
-  }
-  select {
-    width: 100%;
-    font-size: 20px;
-  }
 </style>

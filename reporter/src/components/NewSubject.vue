@@ -3,16 +3,20 @@
     <h1>
       CREATE NEW
     </h1>
-    <button @click='showModal({"Trainee": {"1": "Site", "2": "Crew", "3": "Name"}})'>
-      Trainee
-    </button>
-    <button @click='showModal({"Crew": {"1": "Site", "2": "Name"}})'>
-      Crew
-    </button>
-    <button @click='showModal({"Site": {"1": "Name"}})'>
-      Site
-    </button>
+    <div class="split">
+      <div>
+        <button @click='showModal({"Trainee": {"1": "Site", "2": "Crew", "3": "Name"}})'>
+          Trainee
+        </button>
+        <button @click='showModal({"Crew": {"1": "Site", "2": "Name"}})'>
+          Crew
+        </button>
+        <button @click='showModal({"Site": {"1": "Name"}})'>
+          Site
+        </button>
+      </div>
     <AddSubject :subject="this.addSubjectContent"/>
+    </div>
   </div>
 </template>
 
@@ -39,7 +43,6 @@ export default {
 <style scoped>
   .new-subject {
     padding: 100px 0 100px 0;
-    width: 50%;
     height: calc(100vh - 200px);
     display: flex;
     flex-direction: column;
@@ -48,9 +51,31 @@ export default {
     border: 1px solid black;
   }
 
+  div.split {
+    height: 90%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+
+  div.split > div {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
   button {
-    width: 300px;
+    min-width: 200px;
     font-size: 22px;
-    margin: 10px 0 10px 0;
+    margin: 10px;
+    transition: 0.1s
+  }
+  button:hover {
+    background-color: black;
+    color: white;
   }
 </style>
