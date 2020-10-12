@@ -2,7 +2,14 @@
   <div id="view-reports">
     <HeaderBar />
     <NavBar @clicked="handleTableValue"/>
-    <ReportsTable :tableValue="this.tableValue"/>
+    <div class="container">
+      <router-link :to="{ name: 'ActionDashboard' }"
+          tag="button"
+          class="sessionButton">
+          Create
+      </router-link>
+      <ReportsTable :tableValue="this.tableValue"/>
+    </div>
   </div>
 </template>
 
@@ -31,4 +38,8 @@ export default {
 }
 </script>
 <style scoped>
+  button {
+    position: absolute;
+    right: 30px;
+  }
 </style>

@@ -1,5 +1,10 @@
 <template>
   <div id="new-session">
+      <router-link :to="{ name: 'ViewReports' }"
+          tag="button"
+          class="sessionButton">
+          View Reports
+      </router-link>
     <div class="banner">
       <h1>
         New Session

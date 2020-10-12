@@ -44,6 +44,14 @@ button {
   color: white;
 } */
 
+button.sessionButton {
+  background: #058E6E;
+  border-radius: 15px;
+  color: white;
+  font-weight: 700;
+  border: 0;
+}
+
 input:focus {
     outline: none;
   }

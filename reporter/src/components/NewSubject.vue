@@ -6,14 +6,14 @@
     <h1>
       CREATE NEW
     </h1>
-      <div>
-        <button @click='showModal({"Trainee": {"1": "Site", "2": "Crew", "3": "Name"}})'>
+      <div class="sessionButtonContainer">
+        <button class="sessionButton" @click='showModal({"Trainee": {"1": "Site", "2": "Crew", "3": "Name"}})'>
           Trainee
         </button>
-        <button @click='showModal({"Crew": {"1": "Site", "2": "Name"}})'>
+        <button class="sessionButton" @click='showModal({"Crew": {"1": "Site", "2": "Name"}})'>
           Crew
         </button>
-        <button @click='showModal({"Site": {"1": "Name"}})'>
+        <button class="sessionButton" @click='showModal({"Site": {"1": "Name"}})'>
           Site
         </button>
       <AddSubject :subject="this.addSubjectContent"/>
@@ -42,6 +42,9 @@ export default {
         this.show = false;
       }
     },
+    showModal(content) {
+      this.addSubjectContent = content;
+    }
   }
 }
 </script>
@@ -55,11 +58,21 @@ export default {
     width: 200px;
     height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     box-shadow: 6px 7px 7px -8px;
     background-color: white;
     transition: all 0.6s;
+  }
+
+  div.sessionButtonContainer {
+    width: 100%;
+    height: 500px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
   }
 
   #new-subject-tab {
@@ -87,14 +100,19 @@ export default {
     left: -500px !important;
   }
 
-  button {
-    min-width: 200px;
-    font-size: 22px;
-    margin: 10px;
-    transition: 0.1s
+  button.sessionButton {
+    border-radius: 15px;
+    font-weight: 700;
+    background-color: #F2EFEF;
+    color: black;
+    width: 200px;
+    margin: 8px 0 8px 0;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   }
-  button:hover {
-    background-color: black;
+
+  button.sessionButton:hover {
     color: white;
+    background: #058E6E;
+    border: 0;
   }
 </style>

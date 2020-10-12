@@ -1,8 +1,5 @@
 <template>
   <div id="add-subject">
-    <h1>
-      {{ subjectName }}
-    </h1>
     <ul>
       <li v-for="subject in subject[subjectName]" :key="subject">
         <select  v-if="subject == 'Site'" v-model="siteSelected">
@@ -17,6 +14,9 @@
       </li>
     </ul>
     
+    <h1>
+      {{ subjectName }}
+    </h1>
     <button :class="{invalid: !validated}" @click="createObjectAndMergeWithDatabase()">
       Submit
     </button>
@@ -178,5 +178,19 @@ export default {
 </script>
 
 <style scoped>
-
+  select, input {
+    border-radius: 15px;
+    font-weight: 700;
+    background-color: #F2EFEF;
+    color: black;
+    border: 1px solid #F2EFEF;
+    width: 200px;
+    height: 30px;
+    margin: 8px 0 8px 0;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 22px;
+  }
+  ul {
+    list-style-type: none;
+  }
 </style>
