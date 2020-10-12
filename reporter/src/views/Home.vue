@@ -36,7 +36,14 @@ button {
   border: 1px solid black;
   cursor: pointer;
   border-radius: 15px;
+  transition: all 0.1s;
+  font-size: 18px;
 }
+/* button:hover {
+  background-color: black;
+  color: white;
+} */
+
 input:focus {
     outline: none;
   }

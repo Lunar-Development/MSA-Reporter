@@ -1,0 +1,36 @@
+{"Sites": [
+        {
+            "Site A": {
+                "id": "1",
+                "Crews": [
+                    {
+                        "Crew A": {"reports": []},
+                        "Crew B": {"reports": []}
+                    }
+                ]
+            }
+        },
+        {
+            "Site B": {
+                "id": "2",
+                "Crews": [
+                    {
+                        "Crew A": {"reports": []},
+                        "Crew B": {"reports": []}
+                    }
+                ]
+            }
+        },
+        {
+            "Site C": {
+                "id": "3",
+                "Crews": [
+                    {
+                        "Crew A": {"reports": []},
+                        "Crew B": {"reports": []}
+                    }
+                ]
+            }
+        }
+    ]
+} 

@@ -7,17 +7,8 @@ export default class Firebase {
     require('firebase/firestore')
     
     //firbase config
-    this.firebaseConfig = {
-      apiKey: "AIzaSyB3Zv2onX4C2ynpdHe1FivF3XeFf0OyPVY",
-      authDomain: "msareporter-ld.firebaseapp.com",
-      databaseURL: "https://msareporter-ld.firebaseio.com",
-      projectId: "msareporter-ld",
-      storageBucket: "msareporter-ld.appspot.com",
-      messagingSenderId: "617548880999",
-      appId: "1:617548880999:web:6417e9c874d42cc2c988c2",
-      measurementId: "G-KJ0P0Y6N1H"
-    }
     
+
     this.data = '';
   }
 

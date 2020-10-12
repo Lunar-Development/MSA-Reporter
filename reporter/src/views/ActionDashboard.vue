@@ -1,21 +1,19 @@
 <template>
   <div id="action-dashboard">
     <HeaderBar />
-    <div class="container">
-      <h1>
-        Action!
-      </h1>
-    </div>
+    <NewSubject />
   </div>
 </template>
 
 <script>
 import HeaderBar from '../components/HeaderBar.vue';
+import NewSubject from '../components/NewSubject.vue';
 
 export default {
   name: 'ActionDashboard',
   components: {
-    HeaderBar
+    HeaderBar,
+    NewSubject
   }
 }
 </script>

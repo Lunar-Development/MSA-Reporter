@@ -1,0 +1,36 @@
+{"Crews": [
+        {
+            "Crew A": {
+                "id": "1",
+                "Trainees": [
+                    {
+                        "Trainee 1": {"reports": []},
+                        "Trainee 2": {"reports": []}
+                    }
+                ]
+            }
+        },
+        {
+            "Crew B": {
+                "id": "2",
+                "Trainees": [
+                    {
+                        "Trainee 1": {"reports": []},
+                        "Trainee 2": {"reports": []}
+                    }
+                ]
+            }
+        },
+        {
+            "Crew C": {
+                "id": "3",
+                "Trainees": [
+                    {
+                        "Trainee 1": {"reports": []},
+                        "Trainee 2": {"reports": []}
+                    }
+                ]
+            }
+        }
+    ]
+} 
