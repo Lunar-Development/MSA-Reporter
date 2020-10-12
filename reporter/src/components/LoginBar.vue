@@ -1,7 +1,7 @@
 <template>
   <div class="login-bar" :class="{loggedIn: loggedIn}">
-    <input placeholder="Username" type="username" />
-    <input placeholder="password" type="password" />
+    <input placeholder="Username" type="username" v-model="username"/>
+    <input placeholder="password" type="password" v-model="password"/>
     <button>
       <img @click="login()" id="login" src='../assets/icons/enter.svg' />
     </button>
@@ -9,19 +9,27 @@
 </template>
 
 <script>
+import Firebase from '../database/Firebase'
+
 export default {
   name: 'LoginBar',
   data() {
     return {
-      loggedIn: false
+      loggedIn: false,
+      authStatus: 'No Auth Status',
+      firebaseConnection: '',
+      username: '',
+      password: '',
     }
   },
   methods: {
-    validate() {
-
-    },
-    login() {
-      this.loggedIn = true;
+    async login() {
+      this.firebaseConnection = new Firebase();
+      this.loginStatus = await this.firebaseConnection.signIn(this.username, this.password);
+      if (this.firebaseConnection.authStatus === 'Authorized') {
+        this.authStatus = 'Authorized';
+        this.loggedIn = true;
+      }
     }
   }
 }

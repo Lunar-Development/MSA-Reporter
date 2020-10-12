@@ -1,11 +1,29 @@
 <template>
   <div class="header-bar">
+    <button>
+      <img @click="logout()" id="logout" src='../assets/icons/logout.svg' />
+    </button>
   </div>
 </template>
 
 <script>
+import Firebase from '../database/Firebase'
 export default {
-  name: 'HeaderBar'
+  name: 'HeaderBar',
+  data() {
+    return {
+      loginStatus: ''
+    }
+  },
+  methods: {
+    async logout() {
+      this.firebaseConnection = new Firebase();
+      this.loginStatus = await this.firebaseConnection.signOut();
+      if (this.firebaseConnection.authStatus === 'Unauthorized') {
+        window.location.href = '/'
+      }
+    }
+  }
 }
 </script>
 

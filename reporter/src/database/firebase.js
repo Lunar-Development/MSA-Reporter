@@ -48,6 +48,36 @@ export default class Firebase {
       docRef.set(data)
     })
   }
+
+  signIn = async (user, pass) => {
+    return new Promise(resolve => {
+      this.makeConnection()
+      .then (async () => {
+        this.firebase.auth()
+        .signInWithEmailAndPassword(user, pass)
+        .then(() => {
+          this.authStatus = 'Authorized';
+          resolve(this.authStatus);
+          }).catch((err) => {
+          this.authStatus = err;
+        })
+      })
+    })
+  }
+
+  signOut = async () => {
+    return new Promise(resolve => {
+      this.makeConnection()
+      .then (async () => {
+        this.firebase.auth().signOut().then(() => {
+        this.authStatus = 'Unauthorized';
+        resolve(this.authStatus);
+        }).catch((err) => {
+        this.authStatus = err
+        })
+      })
+    })
+  }
 }
 
 // module.exports.Firebase = Firebase;
