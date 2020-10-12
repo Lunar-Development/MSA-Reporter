@@ -1,8 +1,6 @@
 <template>
   <div class="header-bar">
-    <button>
-      <img @click="logout()" id="logout" src='../assets/icons/logout.svg' />
-    </button>
+    <img @click="logout()" id="logout" src='../assets/icons/logout.svg' />
   </div>
 </template>
 
@@ -41,6 +39,7 @@ export default {
   }
 
   #logout {
+    cursor: pointer;
     height: 40px;
   }
 </style>
