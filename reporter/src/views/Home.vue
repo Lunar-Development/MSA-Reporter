@@ -39,16 +39,23 @@ button {
   transition: all 0.1s;
   font-size: 18px;
 }
-/* button:hover {
-  background-color: black;
-  color: white;
-} */
 
 button.sessionButton {
   background: #058E6E;
   border-radius: 15px;
   color: white;
   font-weight: 700;
+  border: 0;
+}
+
+.addButton {
+  border-radius: 100%;
+  height: 50px;
+  width: 50px;
+  padding: 10px;
+  background-color: #058E6E;
+  font-weight: 900;
+  color: white;
   border: 0;
 }
 

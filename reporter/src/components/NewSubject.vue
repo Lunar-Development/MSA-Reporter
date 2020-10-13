@@ -1,21 +1,21 @@
 <template>
-  <div class="new-subject" :class="{show: show}">
+  <div id="new-subject" :class="{show: show}">
     <div @click="toggleView()" id="new-subject-tab">
       <img id="tab-icon" src='../assets/icons/chevron.svg' />
     </div>
-    <h1>
-      CREATE NEW
-    </h1>
-      <div class="sessionButtonContainer">
-        <button class="sessionButton" @click='showModal({"Trainee": {"1": "Site", "2": "Crew", "3": "Name"}})'>
-          Trainee
-        </button>
-        <button class="sessionButton" @click='showModal({"Crew": {"1": "Site", "2": "Name"}})'>
-          Crew
-        </button>
-        <button class="sessionButton" @click='showModal({"Site": {"1": "Name"}})'>
-          Site
-        </button>
+    <div id="new-subject-content">
+      <h1>
+        CREATE NEW
+      </h1>
+      <button :class="{selected: traineeSelected}" @click='showModal({"Trainee": {"1": "Site", "2": "Crew", "3": "Name"}}, "trainee")'>
+        Trainee
+      </button>
+      <button :class="{selected: crewSelected}" @click='showModal({"Crew": {"1": "Site", "2": "Name"}}, "crew")'>
+        Crew
+      </button>
+      <button :class="{selected: siteSelected}" @click='showModal({"Site": {"1": "Name"}}, "site")'>
+        Site
+      </button>
       <AddSubject :subject="this.addSubjectContent"/>
     </div>
   </div>
@@ -31,7 +31,10 @@ export default {
   data() {
     return {
       show: false,
-      addSubjectContent: {"Trainee": {"1": "Site", "2": "Crew", "3": "Name"}}
+      addSubjectContent: {"Trainee": {"1": "Site", "2": "Crew", "3": "Name"}},
+      traineeSelected: true,
+      crewSelected: false,
+      siteSelected: false
     }
   },
   methods: {
@@ -42,47 +45,69 @@ export default {
         this.show = false;
       }
     },
-    showModal(content) {
+    showModal(content, type) {
       this.addSubjectContent = content;
+      switch (type) {
+        case 'trainee':
+          this.traineeSelected = true;
+          this.crewSelected = false;
+          this.siteSelected = false;
+          break;
+          case 'crew':
+          this.traineeSelected = false;
+          this.crewSelected = true;
+          this.siteSelected = false;
+          break;
+          case 'site':
+          this.siteSelected = true;
+          this.traineeSelected = false;
+          this.crewSelected = false;
+          break;
+      }
     }
   }
 }
 </script>
 
 <style scoped>
-  .new-subject {
-    position: fixed;
-    z-index: 0;
-    left: 0;
-    top: 0;
-    width: 200px;
+  #new-subject {
+    width: 500px;
     height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    padding: 100px 20px 0 20px;
+    position: absolute;
     box-shadow: 6px 7px 7px -8px;
     background-color: white;
     transition: all 0.6s;
   }
 
-  div.sessionButtonContainer {
+  #new-subject-content {
     width: 100%;
-    height: 500px;
-    justify-content: center;
-    align-items: center;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 40px;
+  }
+
+  #new-subject-content > button {
+    background-color: #F2EFEF;
+    border: 0;
+    width: 300px;
+    margin: 5px 0 5px 0;
+  }
+
+  #new-subject-content > button:hover, .selected {
+    background-color: #058E6E !important;
+    color: white;
   }
 
   #new-subject-tab {
     position: relative;
-    z-index: 99;
     display: flex;
     align-items: center;
     justify-content: center;
-    top: -250px;
-    left: 500px;
+    left: 520px;
     width: 50px;
     height: 50px;
     border-top-right-radius: 10px;
@@ -91,28 +116,11 @@ export default {
     box-shadow: 6px 0 15px -8px;
     cursor: pointer;
   }
-
   #tab-icon {
     height: 30px;
   }
 
   .show {
-    left: -500px !important;
-  }
-
-  button.sessionButton {
-    border-radius: 15px;
-    font-weight: 700;
-    background-color: #F2EFEF;
-    color: black;
-    width: 200px;
-    margin: 8px 0 8px 0;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  }
-
-  button.sessionButton:hover {
-    color: white;
-    background: #058E6E;
-    border: 0;
+    left: -530px !important;
   }
 </style>

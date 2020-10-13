@@ -2,23 +2,20 @@
   <div id="add-subject">
     <ul>
       <li v-for="subject in subject[subjectName]" :key="subject">
-        <select  v-if="subject == 'Site'" v-model="siteSelected">
-          <option disabled value="">Select Site</option>
+        <input type="text" v-if="subject == 'Name'" v-model="nameSelected" placeholder="Name">
+        
+        <select v-if="subject == 'Site'" v-model="siteSelected">
+          <option disabled value=""> Select Site</option>
           <option v-for="site in siteData.Sites" :key="site.id">{{ Object.keys(site)[0] }}</option>
         </select>
         <select  v-if="subject == 'Crew'" v-model="crewSelected">
           <option disabled value="">Select Crew</option>
           <option v-for="crew in crewData.Crews" :key="crew.id">{{ Object.keys(crew)[0] }}</option>
         </select>
-        <input type="text" v-if="subject == 'Name'" v-model="nameSelected" placeholder="Name">
       </li>
     </ul>
-    
-    <h1>
-      {{ subjectName }}
-    </h1>
-    <button :class="{invalid: !validated}" @click="createObjectAndMergeWithDatabase()">
-      Submit
+    <button class="addButton" :class="{invalid: !validated}" @click="createObjectAndMergeWithDatabase()">
+      +
     </button>
   </div>
 </template>
@@ -178,19 +175,23 @@ export default {
 </script>
 
 <style scoped>
-  select, input {
-    border-radius: 15px;
-    font-weight: 700;
-    background-color: #F2EFEF;
-    color: black;
-    border: 1px solid #F2EFEF;
-    width: 200px;
-    height: 30px;
-    margin: 8px 0 8px 0;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    font-size: 22px;
+  #add-subject {
+    width: 300px;
   }
   ul {
     list-style-type: none;
+  }
+  select, option, input {
+    height: 50px;
+    width: 100%;
+    margin: 5px 0 5px 0;
+    font-size: 22px;
+    border-radius: 15px;
+    border: 1px solid white;
+    background-color: white;
+  }
+  input {
+    border-bottom: 1px solid black;
+    border-radius: 0;
   }
 </style>
