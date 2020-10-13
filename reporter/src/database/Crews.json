@@ -3,6 +3,17 @@
             "Crew A": {
                 "id": "1",
                 "site": "D",
+                "reports": [
+                    {
+                        "date" : "11/07/2020",
+                        "name": "Crew A",
+                        "id" : "12",
+                        "results": {
+                            "exc average": "60/100",
+                            "dump test 2": "20/100"
+                        }
+                    }
+                ],
                 "Trainees": [
                     {
                         "Trainee 1": {"reports": []},
@@ -15,6 +26,17 @@
             "Crew B": {
                 "id": "2",
                 "site": "A",
+                "reports": [
+                    {
+                        "date" : "09/11/2020",
+                        "name": "Crew B",
+                        "id" : "13",
+                        "results": {
+                            "exc average": "10/100",
+                            "dump test 2": "90/100"
+                        }
+                    }
+                ],
                 "Trainees": [
                     {
                         "Trainee 1": {"reports": []},
@@ -27,6 +49,17 @@
             "Crew C": {
                 "id": "3",
                 "site": "B",
+                "reports": [
+                    {
+                        "date" : "101/10/2020",
+                        "name": "Crew C",
+                        "id" : "14",
+                        "results": {
+                            "exc average": "60/100",
+                            "dump test 2": "20/100"
+                        }
+                    }
+                ],
                 "Trainees": [
                     {
                         "Trainee 1": {"reports": []},

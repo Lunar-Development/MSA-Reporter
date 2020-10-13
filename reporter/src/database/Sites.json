@@ -1,7 +1,27 @@
 {"Sites": [
         {
-            "Site A": {
+            "Site 1": {
                 "id": "1",
+                "reports": [
+                    {
+                        "date" : "11/07/2020",
+                        "name": "Site 1",
+                        "id" : "12",
+                        "results": {
+                            "exc average": "60/100",
+                            "dump test 2": "20/100"
+                        }
+                    },
+                    {
+                        "date" : "11/07/2020",
+                        "name": "Site 1",
+                        "id" : "90",
+                        "results": {
+                            "exc average": "70/100",
+                            "dump test 2": "30/100"
+                        }
+                    }
+                ],
                 "Crews": [
                     {
                         "Crew A": {"reports": []},
@@ -11,8 +31,28 @@
             }
         },
         {
-            "Site B": {
+            "Site 2": {
                 "id": "2",
+                "reports": [
+                    {
+                        "date" : "12/07/2020",
+                        "name": "Site 2",
+                        "id" : "14",
+                        "results": {
+                            "exc average": "60/100",
+                            "dump test 2": "20/100"
+                        }
+                    },
+                    {
+                        "date" : "11/07/2020",
+                        "name": "Site 2",
+                        "id" : "23",
+                        "results": {
+                            "exc average": "70/100",
+                            "dump test 2": "30/100"
+                        }
+                    }
+                ],
                 "Crews": [
                     {
                         "Crew A": {"reports": []},
@@ -22,8 +62,28 @@
             }
         },
         {
-            "Site C": {
+            "Site 3": {
                 "id": "3",
+                "reports": [
+                    {
+                        "date" : "11/07/2020",
+                        "name": "Site 3",
+                        "id" : "3232",
+                        "results": {
+                            "exc average": "60/100",
+                            "dump test 2": "20/100"
+                        }
+                    },
+                    {
+                        "date" : "11/07/2020",
+                        "name": "Site 3",
+                        "id" : "4352",
+                        "results": {
+                            "exc average": "10/100",
+                            "dump test 2": "10/100"
+                        }
+                    }
+                ],
                 "Crews": [
                     {
                         "Crew A": {"reports": []},

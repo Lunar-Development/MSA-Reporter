@@ -12,7 +12,7 @@
           Date
         </div>
       </li>
-      <li v-for="report in reportCollection[tableValue].reports" :key="report.id">
+      <li v-for="report in reportCollection[tableValue]" :key="report.id">
         <router-link :to="{ name: 'Report', params: {category: tableValue, id: report.id} }"
           tag="div"
           id="table-entry">
@@ -33,11 +33,11 @@ export default {
     return {
       historicalReports: {},
       reportCollection: {
-        'Trainee': '',
-        'Crew': '',
-        'Site': ''
+        'Trainee': [],
+        'Crew': [],
+        'Site': []
       },
-      firebaseConnection: {}
+      firebaseConnection: {},
     }
   },
   props: ['tableValue'],
@@ -47,16 +47,13 @@ export default {
   },
   watch: {
     tableValue: {
-      immediate: true, 
-      handler () {
-        this.readHistoricalReports()
-      }
+      immediate: true
     },
     reportCollection: {
       immediate: true, 
       handler () {
         console.log('values updated')
-        console.log(this.reportCollection)
+        console.log(this.reportCollection);
       }
     }
   },
@@ -64,21 +61,39 @@ export default {
     async getDataFromDatabase() 
     {
       this.firebaseConnection = new Firebase();
-      this.reportCollection.Trainee = await this.firebaseConnection.readData('Reports', 'Trainee')
-      this.reportCollection.Crew = await this.firebaseConnection.readData('Reports', 'Crew')
-      this.reportCollection.Site = await this.firebaseConnection.readData('Reports', 'Site')
-    },
-    readHistoricalReports()
-    {
-      switch(this.tableValue) {
-      case 'Trainee':
-        console.log(this.reportCollection.trainee);
-        break;
-      case 'Crew':
-        console.log(this.reportCollection);
-        break;
-      case 'Site':
-        console.log(this.reportCollection);
+
+      let traineeReports = await this.firebaseConnection.readData('Subjects', 'Trainees')
+      let crewReports = await this.firebaseConnection.readData('Subjects', 'Crews')
+      let siteReports = await this.firebaseConnection.readData('Subjects', 'Sites')
+      
+      for (let i = 0; i < siteReports.Sites.length; i ++)
+      {
+        let siteName = Object.keys(siteReports.Sites[i])[0];
+        let siteReportsCollection = siteReports.Sites[i][siteName].reports;
+        for (let j = 0; j < siteReportsCollection.length; j++)
+        {
+          this.reportCollection.Site.push(siteReportsCollection[j])
+        }
+      }
+
+      for (let i = 0; i < crewReports.Crews.length; i ++)
+      {
+        let crewName = Object.keys(crewReports.Crews[i])[0];
+        let crewReportsCollection = crewReports.Crews[i][crewName].reports;
+        for (let j = 0; j < crewReportsCollection.length; j++)
+        {
+          this.reportCollection.Crew.push(crewReportsCollection[j])
+        }
+      }
+
+      for (let i = 0; i < traineeReports.Trainees.length; i ++)
+      {
+        let traineeName = Object.keys(traineeReports.Trainees[i])[0];
+        let traineeReportsCollection = traineeReports.Trainees[i][traineeName].reports;
+        for (let j = 0; j < traineeReportsCollection.length; j++)
+        {
+          this.reportCollection.Trainee.push(traineeReportsCollection[j])
+        }
       }
     }
   }
