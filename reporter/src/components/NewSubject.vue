@@ -5,7 +5,7 @@
     </div>
     <div id="new-subject-content">
       <h1>
-        CREATE NEW
+        Add New {{Object.keys(addSubjectContent)[0]}}
       </h1>
       <button :class="{selected: traineeSelected}" @click='showModal({"Trainee": {"1": "Site", "2": "Crew", "3": "Name"}}, "trainee")'>
         Trainee
@@ -30,7 +30,7 @@ export default {
   },
   data() {
     return {
-      show: false,
+      show: true,
       addSubjectContent: {"Trainee": {"1": "Site", "2": "Crew", "3": "Name"}},
       traineeSelected: true,
       crewSelected: false,
@@ -73,11 +73,12 @@ export default {
   #new-subject {
     width: 500px;
     height: 100vh;
-    padding: 100px 20px 0 20px;
+    padding: 100px 0 0 0;
     position: absolute;
+    left: 0;
     box-shadow: 6px 7px 7px -8px;
     background-color: white;
-    transition: all 0.6s;
+    transition: all 0.6s !important;
   }
 
   #new-subject-content {
@@ -98,7 +99,7 @@ export default {
   }
 
   #new-subject-content > button:hover, .selected {
-    background-color: #058E6E !important;
+    background-color: rgba(66, 118, 139, 1) !important;
     color: white;
   }
 
@@ -107,7 +108,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    left: 520px;
+    left: 500px;
     width: 50px;
     height: 50px;
     border-top-right-radius: 10px;
@@ -121,6 +122,6 @@ export default {
   }
 
   .show {
-    left: -530px !important;
+    left: -500px !important;
   }
 </style>

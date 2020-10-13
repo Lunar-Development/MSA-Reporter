@@ -81,7 +81,6 @@ export default {
     align-items: center;
     justify-content: center;
     left: 200px;
-    top: -250px;
     width: 50px;
     height: 50px;
     border-top-right-radius: 10px;

@@ -3,7 +3,6 @@
     <ul>
       <li v-for="subject in subject[subjectName]" :key="subject">
         <input type="text" v-if="subject == 'Name'" v-model="nameSelected" placeholder="Name">
-        
         <select v-if="subject == 'Site'" v-model="siteSelected">
           <option disabled value=""> Select Site</option>
           <option v-for="site in siteData.Sites" :key="site.id">{{ Object.keys(site)[0] }}</option>
@@ -178,20 +177,12 @@ export default {
   #add-subject {
     width: 300px;
   }
+
+  #add-subject select, option {
+    width: 100%;
+  }
+
   ul {
     list-style-type: none;
-  }
-  select, option, input {
-    height: 50px;
-    width: 100%;
-    margin: 5px 0 5px 0;
-    font-size: 22px;
-    border-radius: 15px;
-    border: 1px solid white;
-    background-color: white;
-  }
-  input {
-    border-bottom: 1px solid black;
-    border-radius: 0;
   }
 </style>

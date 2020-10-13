@@ -1,10 +1,8 @@
 <template>
   <div id="action-dashboard">
     <HeaderBar />
-    <div class="split">
       <NewSubject />
       <NewSession />
-    </div>
 
   </div>
 </template>

@@ -1,5 +1,8 @@
 <template>
   <div id="view-reports-table">
+    <router-link :to="{ name: 'ActionDashboard' }" tag="button">
+        <img class="nav-icon" src='../assets/icons/pen.svg' />
+    </router-link>
     <h1>
       Hi, I'm The {{ tableValue }} Report Viewer
     </h1>
@@ -52,8 +55,8 @@ export default {
     reportCollection: {
       immediate: true, 
       handler () {
-        console.log('values updated')
-        console.log(this.reportCollection);
+        // console.log('values updated')
+        // console.log(this.reportCollection);
       }
     }
   },
@@ -70,6 +73,7 @@ export default {
       {
         let siteName = Object.keys(siteReports.Sites[i])[0];
         let siteReportsCollection = siteReports.Sites[i][siteName].reports;
+        console.log(siteReportsCollection)
         for (let j = 0; j < siteReportsCollection.length; j++)
         {
           this.reportCollection.Site.push(siteReportsCollection[j])

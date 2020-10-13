@@ -2,14 +2,7 @@
   <div id="view-reports">
     <HeaderBar />
     <NavBar @clicked="handleTableValue"/>
-    <div class="container">
-      <router-link :to="{ name: 'ActionDashboard' }"
-          tag="button"
-          class="sessionButton">
-          Create
-      </router-link>
-      <ReportsTable :tableValue="this.tableValue"/>
-    </div>
+    <ReportsTable :tableValue="this.tableValue"/>
   </div>
 </template>
 
