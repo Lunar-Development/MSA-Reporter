@@ -108,9 +108,9 @@ select, option, input {
   height: 50px;
   margin: 5px 0 5px 0;
   font-size: 22px;
-  border-radius: 15px;
   border: 0;
   background-color: white;
+  border-bottom: 1px solid black;
 }
 input {
   border-bottom: 1px solid black;
