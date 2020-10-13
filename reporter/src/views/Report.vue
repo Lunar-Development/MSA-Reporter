@@ -36,7 +36,9 @@ export default {
         "id": ""
       },
       reportKeys: '',
-      report: []
+      subjects: [],
+      reports: [],
+      report: undefined
     }
   },
   mounted(){
@@ -55,15 +57,29 @@ export default {
       this.firebaseConnection = new Firebase();
       switch(this.reportParams.category){
       case 'Trainee':
-        this.reportKeys = await this.firebaseConnection.readData('Reports', 'Trainee')
+        this.reportKeys = await this.firebaseConnection.readData('Subjects', 'Trainees')
         break;
       case 'Crew':
-        this.reportKeys = await this.firebaseConnection.readData('Reports', 'Crew')
+        this.reportKeys = await this.firebaseConnection.readData('Subjects', 'Crews')
         break;
       case 'Site':
-        this.reportKeys = await this.firebaseConnection.readData('Reports', 'Site')
+        this.reportKeys = await this.firebaseConnection.readData('Subjects', 'Sites')
       }
-      this.report = this.reportKeys.reports.filter(report => this.reportParams.id == report.id)[0];
+
+      let keyName = Object.keys(this.reportKeys)[0];
+      for (let i = 0; i < this.reportKeys[keyName].length; i++)
+      {
+        this.subjects.push(this.reportKeys[keyName][i][Object.keys(this.reportKeys[keyName][i])[0]])
+      }
+
+      this.subjects.forEach(subject => {
+        for (let i = 0; i < subject.reports.length; i ++)
+        {
+          this.reports.push(subject.reports[i])
+        }
+      })
+        
+      this.report = this.reports.filter(report => this.reportParams.id == report.id)[0];
     }
   }
 }

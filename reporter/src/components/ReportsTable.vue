@@ -68,35 +68,44 @@ export default {
       let traineeReports = await this.firebaseConnection.readData('Subjects', 'Trainees')
       let crewReports = await this.firebaseConnection.readData('Subjects', 'Crews')
       let siteReports = await this.firebaseConnection.readData('Subjects', 'Sites')
+
+      if (siteReports.Sites)
+      {
+        for (let i = 0; i < siteReports.Sites.length; i ++)
+        {
+          let siteName = Object.keys(siteReports.Sites[i])[0];
+          let siteReportsCollection = siteReports.Sites[i][siteName].reports;
+          console.log(siteReportsCollection)
+          for (let j = 0; j < siteReportsCollection.length; j++)
+          {
+            this.reportCollection.Site.push(siteReportsCollection[j])
+          }
+        }
+      }
       
-      for (let i = 0; i < siteReports.Sites.length; i ++)
+      if (crewReports.Crews)
       {
-        let siteName = Object.keys(siteReports.Sites[i])[0];
-        let siteReportsCollection = siteReports.Sites[i][siteName].reports;
-        console.log(siteReportsCollection)
-        for (let j = 0; j < siteReportsCollection.length; j++)
+        for (let i = 0; i < crewReports.Crews.length; i ++)
         {
-          this.reportCollection.Site.push(siteReportsCollection[j])
+          let crewName = Object.keys(crewReports.Crews[i])[0];
+          let crewReportsCollection = crewReports.Crews[i][crewName].reports;
+          for (let j = 0; j < crewReportsCollection.length; j++)
+          {
+            this.reportCollection.Crew.push(crewReportsCollection[j])
+          }
         }
       }
 
-      for (let i = 0; i < crewReports.Crews.length; i ++)
+      if (traineeReports.Trainees)
       {
-        let crewName = Object.keys(crewReports.Crews[i])[0];
-        let crewReportsCollection = crewReports.Crews[i][crewName].reports;
-        for (let j = 0; j < crewReportsCollection.length; j++)
+        for (let i = 0; i < traineeReports.Trainees.length; i ++)
         {
-          this.reportCollection.Crew.push(crewReportsCollection[j])
-        }
-      }
-
-      for (let i = 0; i < traineeReports.Trainees.length; i ++)
-      {
-        let traineeName = Object.keys(traineeReports.Trainees[i])[0];
-        let traineeReportsCollection = traineeReports.Trainees[i][traineeName].reports;
-        for (let j = 0; j < traineeReportsCollection.length; j++)
-        {
-          this.reportCollection.Trainee.push(traineeReportsCollection[j])
+          let traineeName = Object.keys(traineeReports.Trainees[i])[0];
+          let traineeReportsCollection = traineeReports.Trainees[i][traineeName].reports;
+          for (let j = 0; j < traineeReportsCollection.length; j++)
+          {
+            this.reportCollection.Trainee.push(traineeReportsCollection[j])
+          }
         }
       }
     }
