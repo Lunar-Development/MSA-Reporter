@@ -7,11 +7,14 @@
       <h1>
         Add New {{Object.keys(addSubjectContent)[0]}}
       </h1>
-      <button :class="{selected: traineeSelected}" @click='showModal({"Trainee": {"1": "Site", "2": "Crew", "3": "Name"}}, "trainee")'>
-        Trainee
+      <button :class="{selected: trainerSelected}" @click='showModal({"Trainer": {"1": "Name"}}, "trainer")'>
+        Trainer
       </button>
       <button :class="{selected: crewSelected}" @click='showModal({"Crew": {"1": "Site", "2": "Name"}}, "crew")'>
         Crew
+      </button>
+      <button :class="{selected: traineeSelected}" @click='showModal({"Trainee": {"1": "Site", "2": "Crew", "3": "Name"}}, "trainee")'>
+        Trainee
       </button>
       <button :class="{selected: siteSelected}" @click='showModal({"Site": {"1": "Name"}}, "site")'>
         Site
@@ -34,7 +37,8 @@ export default {
       addSubjectContent: {"Trainee": {"1": "Site", "2": "Crew", "3": "Name"}},
       traineeSelected: true,
       crewSelected: false,
-      siteSelected: false
+      siteSelected: false,
+      trainerSelected: false
     }
   },
   methods: {
@@ -52,16 +56,25 @@ export default {
           this.traineeSelected = true;
           this.crewSelected = false;
           this.siteSelected = false;
+          this.trainerSelected = false
           break;
           case 'crew':
           this.traineeSelected = false;
           this.crewSelected = true;
           this.siteSelected = false;
+          this.trainerSelected = false
           break;
           case 'site':
           this.siteSelected = true;
           this.traineeSelected = false;
           this.crewSelected = false;
+          this.trainerSelected = false
+          break;
+          case 'trainer':
+          this.siteSelected = false;
+          this.traineeSelected = false;
+          this.crewSelected = false;
+          this.trainerSelected = true
           break;
       }
     }

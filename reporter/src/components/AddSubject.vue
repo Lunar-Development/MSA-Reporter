@@ -35,7 +35,8 @@ export default {
       subjectName: '',
       siteData: '',
       crewData: '',
-      traineeData: ''
+      traineeData: '',
+      trainerData: ''
     }
   },
   beforeMount(){
@@ -75,9 +76,11 @@ export default {
     async getDataFromDatabase() 
     {
       this.firebaseConnection = new Firebase();
+      
       this.traineeData = await this.firebaseConnection.readData('Subjects', 'Trainees')
       this.crewData = await this.firebaseConnection.readData('Subjects', 'Crews')
       this.siteData = await this.firebaseConnection.readData('Subjects', 'Sites')
+      this.trainerData = await this.firebaseConnection.readData('Subjects', 'Trainers')
     },
     async writeDataToDatabase(subject, doc, data) 
     {
@@ -88,6 +91,12 @@ export default {
       switch(this.subjectName) {
       case 'Trainee':
         if (this.siteSelected && this.crewSelected && this.nameSelected)
+        {
+          this.validated = true;
+        }
+        break;
+        case 'Trainer':
+        if (this.nameSelected)
         {
           this.validated = true;
         }
@@ -163,6 +172,24 @@ export default {
 
             //TODO: submit to db
             this.writeDataToDatabase('Subjects', 'Sites', this.siteData)
+          break;
+          }
+
+          case 'Trainer': {
+            //get last trainee ID
+            console.log(this.trainerData)
+            let lastTrainerName = Object.keys(this.trainerData.Trainers[this.trainerData.Trainers.length - 1])
+            let lastTrainerID = this.trainerData.Trainers[this.trainerData.Trainers.length - 1][lastTrainerName].id;
+
+            let newTrainer = {};
+            newTrainer[this.nameSelected] = {};
+            newTrainer[this.nameSelected].id = (parseInt(lastTrainerID) + 1).toString();
+
+            //push to sites array
+            this.trainerData.Trainers.push(newTrainer)
+
+            //TODO: submit to db
+            this.writeDataToDatabase('Subjects', 'Trainers', this.trainerData)
           break;
           }
         }
