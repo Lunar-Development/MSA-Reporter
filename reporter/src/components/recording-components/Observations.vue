@@ -2,17 +2,30 @@
   <div id="observations">
     <div id="observations-content">
       <h1>
-        Observations Calculator
+        Observations Record
       </h1>
+      <Matrix @observationsSubmitted="passObservation" :markingCriteria="criteria" :method="method"/>
     </div>
   </div>
 </template>
 
 <script>
+import Matrix from './tools/Matrix'
 export default {
   name: 'Observations',
+  props: ['criteria', 'method'],
+  components: {
+    Matrix
+  },
+  methods: {
+    passObservation(value)
+    {
+      this.$emit('observationsSubmitted', value)
+    }
+  },
   data() {
     return {
+      observationsObject: {},
     }
   }
 }
@@ -32,8 +45,6 @@ export default {
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     text-align: center;
     padding-bottom: 40px;
   }

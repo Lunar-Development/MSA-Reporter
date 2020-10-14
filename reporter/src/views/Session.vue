@@ -3,6 +3,9 @@
     <HeaderBar />
     <div class="details">
       <div>
+        <h1>
+          Report Details
+        </h1>
         <ul>
           <li :key="detail" v-for="detail in sessionDetails">
               <h2>
@@ -22,6 +25,21 @@
           </li>
         </ul>
       </div>
+      <div v-if="observationsSubmitted">
+        <h1>
+          Observations
+        </h1>
+          <ul>
+          <li :key="detail" v-for="detail in observationsSubmitted">
+              <h2>
+                {{ Object.keys(observationsSubmitted).find(key => observationsSubmitted[key] === detail) }} : 
+              </h2>
+              <p>
+                {{ detail }}
+              </p>
+          </li>
+        </ul>
+        </div>
       <div id="new-session-radio">
         <div class="radio-buttons">
             <button @click="selectCycle()" :class="{selected: cycleSelect.selected}">Cycle Time</button>
@@ -30,18 +48,19 @@
       </div>
     </div>
     <div v-if="methodSelected == 'observations'">
-      <Observations/>
+      <Observations @observationsSubmitted="holdObservations" :criteria="criteria" :method="sessionDetails.method"/>
     </div>
     <div v-if="methodSelected == 'cycle'">
-      <CycleTime/>
+      <CycleTime :criteria="criteria" :method="sessionDetails.method"/>
     </div>
   </div>
 </template>
 
 <script>
+import Firebase from '../database/firebase';
 import HeaderBar from '../components/HeaderBar.vue';
-import CycleTime from '../components/CycleTime.vue';
-import Observations from '../components/Observations.vue';
+import CycleTime from '../components/recording-components/CycleTime.vue';
+import Observations from '../components/recording-components/Observations.vue';
 
 export default {
   name: 'Session',
@@ -54,8 +73,10 @@ export default {
     return {
       show: '',
       sessionDetails: Object,
+      observationsSubmitted: false,
       date: '',
-      methodSelected: 'none',
+      criteria: undefined,
+      methodSelected: 'cycle',
       cycleSelect: {
         selected: true
       },
@@ -64,11 +85,30 @@ export default {
       },
     }
   },
+  watch: {
+    observationsSubmitted: {
+      immediate: true, 
+      handler () {
+        console.log('obs changed')
+      }
+    }
+  },
   beforeMount(){
     this.getDate();
     this.showSessionDetails();
+    this.getCriteriaFromDatabase();
   },
   methods: {
+    holdObservations(value)
+    {
+      this.observationsSubmitted = value;
+      console.log(this.observationsSubmitted)
+    },
+    async getCriteriaFromDatabase()
+    {
+      this.firebaseConnection = new Firebase();
+      this.criteria = await this.firebaseConnection.readData('Criteria', this.sessionDetails.method);
+    },
     selectCycle() {
       if (this.observationSelect.selected) {
         this.observationSelect.selected = false;
@@ -110,10 +150,9 @@ export default {
 <style scoped>
   .details {
     padding: 200px 100px 100px 100px;
-    height: 200px;
+    height: 350px;
     display: flex;
     justify-content: space-evenly;
-    align-items: center;
   }
 
   .details > * {
@@ -121,6 +160,11 @@ export default {
   }
 
   #new-session-radio {
+    text-align: center;
+  }
+
+  #new-session-radio > button {
+    margin-top: 40px;
   }
 
   li > * {
@@ -128,6 +172,12 @@ export default {
     display: inline-block;
     padding-left: 20px;
     margin: 0;
+  }
+
+  button:hover {
+    color: white;
+    background-color: rgba(66, 118, 139, 1);
+    border-color: white;
   }
 
 </style>
