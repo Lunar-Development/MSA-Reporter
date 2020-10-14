@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Firebase from '../database/Firebase'
+import Firebase from '../database/firebase'
 export default {
   name: 'HeaderBar',
   data() {

@@ -17,6 +17,7 @@ export default {
 
 ul {
   padding-left: 0;
+  list-style-type: none !important;
 }
 
 body {
@@ -106,15 +107,16 @@ input:focus {
 
 select, option, input {
   height: 50px;
+  -webkit-appearance:none;
   margin: 5px 0 5px 0;
   font-size: 22px;
   border: 0;
   background-color: white;
   border-bottom: 1px solid black;
+  border-radius: 0;
 }
 input {
   border-bottom: 1px solid black;
-  border-radius: 0;
 }
 
 .navButton {

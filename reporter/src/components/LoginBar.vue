@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import Firebase from '../database/Firebase'
+import Firebase from '../database/firebase.js'
 
 export default {
   name: 'LoginBar',

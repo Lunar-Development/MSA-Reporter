@@ -21,14 +21,14 @@
           id="table-entry">
             <div> {{ report.name }}</div>
             <div> {{ report.date }}</div>
-          </router-link>
+        </router-link>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-import Firebase from '../database/Firebase.js';
+import Firebase from '../database/firebase.js';
 
 export default {
   name: 'ReportsTable',

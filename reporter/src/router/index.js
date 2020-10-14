@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Login from '../views/Login.vue'
 import ViewReports from '../views/ViewReports.vue'
 import ActionDashboard from '../views/ActionDashboard.vue'
+import Session from '../views/Session.vue'
 import Report from '../views/Report.vue'
 
 Vue.use(VueRouter)
@@ -31,6 +32,12 @@ const routes = [
     path: '/report/:category/:id',
     name: 'Report',
     component: Report,
+    props: true
+  },
+  {
+    path: '/Session/:excavator/:truck/:trainee/:trainer/:session/:method',
+    name: 'Session',
+    component: Session,
     props: true
   }
 ]

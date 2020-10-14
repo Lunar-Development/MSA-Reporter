@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import Firebase from '../database/Firebase.js';
+import Firebase from '../database/firebase.js';
 
 export default {
   name: 'AddSubject',
@@ -39,7 +39,6 @@ export default {
     }
   },
   beforeMount(){
-    // this.writeDataToDatabase('Subjects', 'Crews', )
     this.getDataFromDatabase();
   },
   watch: {

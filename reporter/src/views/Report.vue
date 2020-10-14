@@ -13,7 +13,6 @@
           {{ report.results }}
         </li>
       </ul>
-      <BarGraph />
       <button>SAVE</button>
       <button>PRINT</button>
     </div>
@@ -22,14 +21,12 @@
 
 <script>
 import HeaderBar from '../components/HeaderBar.vue';
-import BarGraph from '../components/graphs/BarGraph.vue'
-import Firebase from '../database/Firebase.js';
+import Firebase from '../database/firebase.js';
 
 export default {
   name: 'Report',
   components: {
     HeaderBar,
-    BarGraph
   },
   data() {
     return {

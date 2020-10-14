@@ -13,40 +13,35 @@
     </div>
     <div class="form">
       <div class="select-fields">
-        <select>
+        <select v-model="excavator">
           <option disabled value="">Select Excavator</option>
           <option>MST670</option>
         </select>
-        <select>
+        <select v-model="trainer">
           <option disabled value="">Select Trainer</option>
           <option>Bill Trainey</option>
         </select>
-        <select>
+        <select v-model="trainee">
           <option disabled value="">Select Trainee</option>
           <option>Alex Murray</option>
         </select>
-        <select>
+        <select v-model="truck">
           <option disabled value="">Select Truck</option>
           <option>HGD9000</option>
         </select>
-        <select>
+        <select v-model="session">
           <option disabled value="">Select Session</option>
           <option>1</option>
         </select>
-        <select>
+        <select v-model="method">
           <option disabled value="">Select Method</option>
           <option>Dig</option>
         </select>
       </div>
-      <div id="new-session-radio">
-        <div class="radio-buttons">
-            <button @click="selectCycle()" :class="{selected: cycleSelect.selected}">Cycle Time</button>
-            <button @click="selectObservations()" :class="{selected: observationSelect.selected}">Observations</button>
-        </div>
-      </div>
-      <button>
-        GO
-      </button>
+      <router-link :to="{ name: 'Session', params: {excavator: excavator, truck: truck, trainee: trainee, trainer: trainer, method: method, session: session} }"
+          tag="button">
+            GO
+        </router-link>
     </div>
   </div>
 </template>
@@ -57,27 +52,13 @@ export default {
   name: 'NewSession',
   data() {
     return {
-      cycleSelect: {
-        selected: true
-      },
-      observationSelect: {
-        selected: false
-      }
+      excavator: String,
+      trainer: String,
+      trainee: String,
+      truck: String,
+      method: String,
+      session: String
     }
-  },
-  methods: {
-    selectCycle() {
-      if (this.observationSelect.selected) {
-        this.observationSelect.selected = false;
-      }
-      this.cycleSelect.selected = true;
-    },
-    selectObservations() {
-      if (this.cycleSelect.selected) {
-        this.cycleSelect.selected = false;
-      }
-      this.observationSelect.selected = true;
-    },
   }
 }
 </script>
@@ -89,12 +70,7 @@ export default {
     flex-direction: column;
     width: 100%;
     padding-top: 80px;
-    border: 1px solid black;
     align-items: center;
-  }
-
-  #new-session-radio {
-    margin-bottom: 40px;
   }
 
   .form {
