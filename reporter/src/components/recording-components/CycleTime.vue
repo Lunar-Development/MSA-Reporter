@@ -1,19 +1,61 @@
 <template>
   <div id="cycle-time">
-    <div id="cycle-time-content">
       <h1>
         Cycle Time Calculator
       </h1>
+      <p>
+        {{cycleResults}}
+      </p>
+    <div id="cycle-time-content">
+      <div>
+        <h2>Cycle {{cycleCount}}</h2>
+        <button @click="startTimer()">
+          Start
+        </button>
+        <button @click="stopTimer()">
+          Stop
+        </button>
+        <p>
+          Time difference {{ timeDifference }}
+        </p>
+      </div>
+      
     </div>
   </div>
 </template>
 
 <script>
+import Timer from '../../js/Timer';
+
 export default {
   name: 'CycleTime',
   data() {
     return {
+      timeDifference: '',
+      cycleCount: 1,
+      cycleResults: []
     }
+  },
+  beforeMount()
+  {
+    this.timer = new Timer();
+  },
+  methods: {
+    startTimer()
+    {
+      this.timer.startTimer()
+    },
+    stopTimer()
+    {
+      this.timer.stopTimer()
+      this.timeDifference = this.timer.getTimeDifference();
+      let cycleName = 'Cycle ' + this.cycleCount;
+      this.cycleResults.push({
+        [cycleName]: this.timeDifference
+      })
+      this.cycleCount++;
+      console.log(this.cycleResults)
+    },
   }
 }
 </script>
@@ -31,7 +73,7 @@ export default {
   #cycle-time-content {
     width: 100%;
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     justify-content: center;
     align-items: center;
     text-align: center;
