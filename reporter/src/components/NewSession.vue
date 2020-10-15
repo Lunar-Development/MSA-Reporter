@@ -84,11 +84,12 @@ export default {
 <style scoped>
   #new-session {
     display: flex;
-    height: 100vh;
+    margin-top: 100px;
+    height: calc(100vh - 100px);
     flex-direction: column;
     width: 100%;
-    padding-top: 80px;
     align-items: center;
+    justify-content: center;
   }
 
   .form {

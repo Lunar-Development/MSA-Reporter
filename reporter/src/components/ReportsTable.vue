@@ -128,7 +128,8 @@ export default {
 <style scoped>
 #view-reports-table {
   display: flex;
-  height: 100vh;
+  height: calc(100vh - 100px);
+  margin-top: 100px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -136,8 +137,8 @@ export default {
 
 .report-table {
   width: 600px;
-  max-height: 600px;
-  overflow-y: scroll;
+  max-height: 500px !important;
+  overflow: scroll;
   border: 1px solid #2A9D8F;
   border-radius: 10px;
   box-shadow: 6px 8px 7px -8px grey;

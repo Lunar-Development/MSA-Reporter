@@ -31,8 +31,4 @@ export default {
 }
 </script>
 <style scoped>
-  button {
-    position: absolute;
-    right: 30px;
-  }
 </style>

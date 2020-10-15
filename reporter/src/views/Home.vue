@@ -122,7 +122,7 @@ input {
 .navButton {
   width: 100%;
   display: flex;
-  justify-content: flex-end
+  justify-content: center
 }
 
 .nav-icon {
