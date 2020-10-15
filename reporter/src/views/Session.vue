@@ -138,7 +138,6 @@ export default {
 
       //push new report to trainee
       trainee[Object.keys(trainee)[0]].reports.push(this.report)
-      
       //overwrite current document with new report pushed
       this.currentDocument.Trainees.splice(traineeIndex, 1);
       this.currentDocument.Trainees.push(trainee)

@@ -2,17 +2,9 @@
   <div>
     <HeaderBar />
     <div class="container">
-      <h1>
-        {{ report.name }}
-      </h1>
-      <h2>
-        {{ report.date }}
-      </h2>
-      <ul>
-        <li>
-          {{ report.results }}
-        </li>
-      </ul>
+      <p>
+        {{ report }}
+      </p>
       <button>SAVE</button>
       <button>PRINT</button>
     </div>
@@ -73,9 +65,12 @@ export default {
       }
 
       this.subjects.forEach(subject => {
-        for (let i = 0; i < subject.reports.length; i ++)
+        if (subject.reports)
         {
-          this.reports.push(subject.reports[i])
+          for (let i = 0; i < subject.reports.length; i ++)
+          {
+            this.reports.push(subject.reports[i])
+          }
         }
       })
         
