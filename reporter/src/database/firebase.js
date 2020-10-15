@@ -41,6 +41,14 @@ export default class Firebase {
   })
 }
 
+  mergeData = async (collection, document, newData) => {
+    this.makeConnection()
+    .then(async () => {
+      let docRef = this.db.collection(collection).doc(document);
+      docRef.set(newData, {merge: true})
+    })
+  }
+
   readData = async (collection, document) => {
     return new Promise(resolve => {
       this.makeConnection()

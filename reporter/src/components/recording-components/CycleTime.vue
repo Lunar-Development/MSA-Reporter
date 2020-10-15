@@ -13,7 +13,7 @@
           Stop
         </button>
         <p>
-          Time difference {{ timeDifference }}
+          Cycle {{(cycleCount - 1)}} Time difference {{ timeDifference }} seconds
         </p>
       </div>
       <button @click="passCycleTimes(cycleResults)">
@@ -56,6 +56,7 @@ export default {
       this.cycleResults.push({
         [cycleName]: this.timeDifference
       })
+      console.log(this.timeDifference)
       this.cycleCount++;
     },
   }

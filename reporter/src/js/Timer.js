@@ -7,16 +7,16 @@ export default class Timer
     startTimer()
     {
         this.startTime = new Date().getTime();
-        return this.startTime;
+        return Math.ceil(this.startTime);
     }
     stopTimer()
     {
         this.stopTime = new Date().getTime();
-        return this.stopTime;
+        return Math.ceil(this.stopTime);
     }
 
     getTimeDifference()
     {
-        return (this.stopTime - this.startTime) / 1000;
+        return Math.ceil((this.stopTime - this.startTime) / 1000);
     }
 }

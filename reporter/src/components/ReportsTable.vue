@@ -50,7 +50,11 @@ export default {
   },
   watch: {
     tableValue: {
-      immediate: true
+      immediate: true,
+      handler()
+      {
+        console.log(this.tableValue)
+      }
     },
     reportCollection: {
       immediate: true, 
@@ -74,11 +78,13 @@ export default {
         for (let i = 0; i < siteReports.Sites.length; i ++)
         {
           let siteName = Object.keys(siteReports.Sites[i])[0];
-          let siteReportsCollection = siteReports.Sites[i][siteName].reports;
-          console.log(siteReportsCollection)
-          for (let j = 0; j < siteReportsCollection.length; j++)
+          if (siteReports.Sites[i][siteName].reports)
           {
-            this.reportCollection.Site.push(siteReportsCollection[j])
+            let siteReportsCollection = siteReports.Sites[i][siteName].reports;
+            for (let j = 0; j < siteReportsCollection.length; j++)
+            {
+              this.reportCollection.Site.push(siteReportsCollection[j])
+            }
           }
         }
       }
@@ -88,10 +94,13 @@ export default {
         for (let i = 0; i < crewReports.Crews.length; i ++)
         {
           let crewName = Object.keys(crewReports.Crews[i])[0];
-          let crewReportsCollection = crewReports.Crews[i][crewName].reports;
-          for (let j = 0; j < crewReportsCollection.length; j++)
+          if (crewReports.Crews[i][crewName].reports)
           {
-            this.reportCollection.Crew.push(crewReportsCollection[j])
+            let crewReportsCollection = crewReports.Crews[i][crewName].reports;
+            for (let j = 0; j < crewReportsCollection.length; j++)
+            {
+              this.reportCollection.Crew.push(crewReportsCollection[j])
+            }
           }
         }
       }
@@ -101,10 +110,13 @@ export default {
         for (let i = 0; i < traineeReports.Trainees.length; i ++)
         {
           let traineeName = Object.keys(traineeReports.Trainees[i])[0];
-          let traineeReportsCollection = traineeReports.Trainees[i][traineeName].reports;
-          for (let j = 0; j < traineeReportsCollection.length; j++)
+          if (traineeReports.Trainees[i][traineeName].reports)
           {
-            this.reportCollection.Trainee.push(traineeReportsCollection[j])
+            let traineeReportsCollection = traineeReports.Trainees[i][traineeName].reports;
+            for (let j = 0; j < traineeReportsCollection.length; j++)
+            {
+              this.reportCollection.Trainee.push(traineeReportsCollection[j])
+            }
           }
         }
       }

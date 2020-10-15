@@ -1,67 +1,72 @@
 <template>
   <div id="session">
     <HeaderBar />
-    <div class="details">
-      <div>
+    <div class="reportDetails">
+      <div class="previewBlock">
         <h1>
-          Report Details
+          Details
         </h1>
         <ul>
           <li :key="detail" v-for="detail in sessionDetails">
-              <h2>
+              <p>
                 {{ Object.keys(sessionDetails).find(key => sessionDetails[key] === detail) }} : 
-              </h2>
+              </p>
               <p>
                 {{ detail }}
               </p>
           </li>
           <li>
-            <h2>
+            <p>
               Date :
-            </h2>
+            </p>
             <p>
               {{this.date}} 
             </p>
           </li>
         </ul>
       </div>
-      <div v-if="observationsSubmitted">
+      <div class="previewBlock" v-if="observationsSubmitted">
         <h1>
           Observations
         </h1>
           <ul>
-            <li :key="detail" v-for="detail in observationsSubmitted">
-                <h2>
+            <li v-for="detail in observationsSubmitted" :key="detail">
+                <p>
                   {{ Object.keys(observationsSubmitted).find(key => observationsSubmitted[key] === detail) }} : 
-                </h2>
+                </p>
                 <p>
                   {{ detail }}
                 </p>
             </li>
           </ul>
       </div>
-      <div v-if="cycleTimesSubmitted">
+      <div class="previewBlock" v-if="cycleTimesSubmitted">
         <h1>
           Cycle Times
         </h1>
           <ul>
-            <li :key="detail" v-for="detail in cycleTimesSubmitted">
-                <h2>
+            <li :key="Object.keys(detail)[0]" v-for="detail in cycleTimesSubmitted">
+                <p>
                   {{ Object.keys(detail)[0] }} :
-                </h2>
+                </p>
                 <p>
                   {{ detail[Object.keys(detail)[0]] }}
                 </p>
             </li>
           </ul>
       </div>
-      <div id="new-session-radio">
+    </div>
+    <div class="submit">
+      <button @click="submitReport()">
+        Submit Report
+      </button>
+    </div>
+    <div id="new-session-radio">
         <div class="radio-buttons">
             <button @click="selectCycle()" :class="{selected: cycleSelect.selected}">Cycle Time</button>
             <button @click="selectObservations()" :class="{selected: observationSelect.selected}">Observations</button>
         </div>
       </div>
-    </div>
     <div v-if="methodSelected == 'observations'">
       <Observations @observationsSubmitted="holdObservations" :criteria="criteria" :method="sessionDetails.method"/>
     </div>
@@ -99,6 +104,8 @@ export default {
       observationSelect: {
         selected: false
       },
+
+      report: {}
     }
   },
   beforeMount(){
@@ -107,6 +114,37 @@ export default {
     this.getCriteriaFromDatabase();
   },
   methods: {
+    submitReport()
+    {
+      this.report.name = this.sessionDetails.trainee;
+      this.report.date = this.date;
+      this.report.id = new Date().getTime();
+      this.report.results = {
+        'cycleTime': this.cycleTimesSubmitted,
+        'observations': this.observationsSubmitted
+      }
+
+      this.saveReportToDatabase()
+    },
+    async saveReportToDatabase()
+    {
+      this.firebaseConnection = new Firebase();
+      //grab current trainee document
+      this.currentDocument = await this.firebaseConnection.readData('Subjects', 'Trainees');
+
+      //indexof trainee
+      let trainee = this.currentDocument.Trainees.find(obj => Object.keys(obj)[0] == this.sessionDetails.trainee);
+      let traineeIndex = this.currentDocument.Trainees.indexOf(trainee);
+
+      //push new report to trainee
+      trainee[Object.keys(trainee)[0]].reports.push(this.report)
+      
+      //overwrite current document with new report pushed
+      this.currentDocument.Trainees.splice(traineeIndex, 1);
+      this.currentDocument.Trainees.push(trainee)
+
+      this.firebaseConnection.writeData('Subjects', 'Trainees', this.currentDocument)
+    },
     holdObservations(value)
     {
       this.observationsSubmitted = value;
@@ -114,7 +152,6 @@ export default {
     holdCycleTimes(value)
     {
       this.cycleTimesSubmitted = value;
-      console.log(this.cycleTimesSubmitted)
     },
     async getCriteriaFromDatabase()
     {
@@ -160,30 +197,65 @@ export default {
 </script>
 
 <style scoped>
-  .details {
-    padding: 200px 100px 100px 100px;
-    height: 350px;
+  .submit {
+    width: 100%;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
   }
 
-  .details > * {
-    display: inline-block;
+  .submit > button:hover {
+    background-color: #2A9D8F;
+  }
+
+  .reportDetails {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 100px 0 50px 0;
+    flex-wrap: wrap;
+  }
+
+  .reportDetails > .previewBlock {
+    width: 400px;
+    margin: 0 30px 0 30px;
+    border: 1px solid #2A9D8F;
+    border-radius: 15px;
+    max-height: 500px;
+    overflow: scroll
+  }
+
+  .previewBlock > h1 {
+    text-align: center;
+  }
+
+  .previewBlock li:nth-child(even) {
+    background-color: rgba(203, 227, 235, 0.3);
+  }
+
+  li {
+    padding: 0 50px 0 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0;
+    text-transform: capitalize;
+  }
+
+  li > p:nth-child(1) {
+    font-weight: 900;
   }
 
   #new-session-radio {
     text-align: center;
+    margin-bottom: 50px;
   }
 
   #new-session-radio > button {
     margin-top: 40px;
-  }
-
-  li > * {
-    text-transform:capitalize;
-    display: inline-block;
-    padding-left: 20px;
-    margin: 0;
   }
 
   button:hover {
