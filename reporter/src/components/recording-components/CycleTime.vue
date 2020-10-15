@@ -1,11 +1,8 @@
 <template>
   <div id="cycle-time">
-      <h1>
-        Cycle Time Calculator
-      </h1>
-      <p>
-        {{cycleResults}}
-      </p>
+    <h1>
+      Cycle Time Calculator
+    </h1>
     <div id="cycle-time-content">
       <div>
         <h2>Cycle {{cycleCount}}</h2>
@@ -19,7 +16,9 @@
           Time difference {{ timeDifference }}
         </p>
       </div>
-      
+      <button @click="passCycleTimes(cycleResults)">
+        Submit Cycle Times
+      </button>
     </div>
   </div>
 </template>
@@ -41,6 +40,10 @@ export default {
     this.timer = new Timer();
   },
   methods: {
+    passCycleTimes(value)
+    {
+      this.$emit('cycleTimesSubmitted', value)
+    },
     startTimer()
     {
       this.timer.startTimer()
@@ -54,7 +57,6 @@ export default {
         [cycleName]: this.timeDifference
       })
       this.cycleCount++;
-      console.log(this.cycleResults)
     },
   }
 }

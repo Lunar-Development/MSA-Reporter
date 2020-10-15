@@ -30,16 +30,31 @@
           Observations
         </h1>
           <ul>
-          <li :key="detail" v-for="detail in observationsSubmitted">
-              <h2>
-                {{ Object.keys(observationsSubmitted).find(key => observationsSubmitted[key] === detail) }} : 
-              </h2>
-              <p>
-                {{ detail }}
-              </p>
-          </li>
-        </ul>
-        </div>
+            <li :key="detail" v-for="detail in observationsSubmitted">
+                <h2>
+                  {{ Object.keys(observationsSubmitted).find(key => observationsSubmitted[key] === detail) }} : 
+                </h2>
+                <p>
+                  {{ detail }}
+                </p>
+            </li>
+          </ul>
+      </div>
+      <div v-if="cycleTimesSubmitted">
+        <h1>
+          Cycle Times
+        </h1>
+          <ul>
+            <li :key="detail" v-for="detail in cycleTimesSubmitted">
+                <h2>
+                  {{ Object.keys(detail)[0] }} :
+                </h2>
+                <p>
+                  {{ detail[Object.keys(detail)[0]] }}
+                </p>
+            </li>
+          </ul>
+      </div>
       <div id="new-session-radio">
         <div class="radio-buttons">
             <button @click="selectCycle()" :class="{selected: cycleSelect.selected}">Cycle Time</button>
@@ -51,7 +66,7 @@
       <Observations @observationsSubmitted="holdObservations" :criteria="criteria" :method="sessionDetails.method"/>
     </div>
     <div v-if="methodSelected == 'cycle'">
-      <CycleTime :criteria="criteria" :method="sessionDetails.method"/>
+      <CycleTime @cycleTimesSubmitted="holdCycleTimes" :criteria="criteria" :method="sessionDetails.method"/>
     </div>
   </div>
 </template>
@@ -74,6 +89,7 @@ export default {
       show: '',
       sessionDetails: Object,
       observationsSubmitted: false,
+      cycleTimesSubmitted: false,
       date: '',
       criteria: undefined,
       methodSelected: 'cycle',
@@ -85,14 +101,6 @@ export default {
       },
     }
   },
-  watch: {
-    observationsSubmitted: {
-      immediate: true, 
-      handler () {
-        console.log('obs changed')
-      }
-    }
-  },
   beforeMount(){
     this.getDate();
     this.showSessionDetails();
@@ -102,7 +110,11 @@ export default {
     holdObservations(value)
     {
       this.observationsSubmitted = value;
-      console.log(this.observationsSubmitted)
+    },
+    holdCycleTimes(value)
+    {
+      this.cycleTimesSubmitted = value;
+      console.log(this.cycleTimesSubmitted)
     },
     async getCriteriaFromDatabase()
     {

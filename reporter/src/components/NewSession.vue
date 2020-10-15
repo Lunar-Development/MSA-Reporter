@@ -13,26 +13,17 @@
     </div>
     <div class="form">
       <div class="select-fields">
-        <select v-model="excavator">
-          <option disabled value="">Select Excavator</option>
-          <option>MST670</option>
-        </select>
+        <input type="text" v-model="excavator" name="excavator" placeholder="Excavator">
         <select v-model="trainer">
           <option disabled value="">Select Trainer</option>
-          <option>Bill Trainey</option>
+          <option v-for="trainer in trainerData" :key="trainer[Object.keys(trainer)].id">{{Object.keys(trainer)[0]}}</option>
         </select>
         <select v-model="trainee">
           <option disabled value="">Select Trainee</option>
-          <option>Alex Murray</option>
+          <option v-for="trainee in traineeData" :key="trainee[Object.keys(trainee)].id">{{Object.keys(trainee)[0]}}</option>
         </select>
-        <select v-model="truck">
-          <option disabled value="">Select Truck</option>
-          <option>HGD9000</option>
-        </select>
-        <select v-model="session">
-          <option disabled value="">Select Session</option>
-          <option>1</option>
-        </select>
+        <input type="text" v-model="truck" name="truck" placeholder="Truck" />
+        <input type="text" v-model="session" name="truck" placeholder="Session" />
         <select v-model="method">
           <option disabled value="">Select Method</option>
           <option>Dig</option>
@@ -47,18 +38,45 @@
 </template>
 
 <script>
+import Firebase from '../database/firebase.js';
 
 export default {
   name: 'NewSession',
   data() {
     return {
-      excavator: String,
-      trainer: String,
-      trainee: String,
-      truck: String,
-      method: String,
-      session: String
+      excavator: '',
+      trainer: '',
+      trainee: '',
+      truck: '',
+      method: '',
+      session: '',
+
+
+      siteData: {},
+      crewData: {},
+      traineeData: {},
+      trainerData: {}
     }
+  },
+  beforeMount(){
+    this.getDataFromDatabase();
+  },
+  methods: {
+    async getDataFromDatabase() 
+    {
+      this.firebaseConnection = new Firebase();
+      
+      this.traineeData = await this.firebaseConnection.readData('Subjects', 'Trainees')
+      this.crewData = await this.firebaseConnection.readData('Subjects', 'Crews')
+      this.siteData = await this.firebaseConnection.readData('Subjects', 'Sites')
+      this.trainerData = await this.firebaseConnection.readData('Subjects', 'Trainers')
+
+      this.crewData = this.crewData.Crews
+      this.siteData = this.siteData.Sites
+      this.trainerData = this.trainerData.Trainers
+      this.traineeData = this.traineeData.Trainees
+
+    },
   }
 }
 </script>
@@ -87,11 +105,11 @@ export default {
   }
 
   .select-fields {
-    width: 80%;
+    width: 50%;
     text-align: center;
     padding: 20px 0 40px 0;
   }
-  .select-fields > select {
+  .select-fields > select, input {
     width: 45%;
     margin: 10px;
   }
