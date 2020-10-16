@@ -174,8 +174,7 @@ export default {
             this.crewData.Crews.push(newCrew)
 
             //TODO: submit to db
-            this.writeDataToDatabase('Subjects', 'Crews', this.crewData)
-            this.updateCrewsInSites()
+            this.writeDataToDatabase('Subjects', 'Crews', this.crewData);
           break;
           }
             

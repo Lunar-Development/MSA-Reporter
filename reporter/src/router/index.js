@@ -35,7 +35,7 @@ const routes = [
     props: true
   },
   {
-    path: '/Session/:excavator/:truck/:trainee/:trainer/:session/:method',
+    path: '/Session/:excavator/:truck/:trainee/:trainer/:session/:method/:site/:crew',
     name: 'Session',
     component: Session,
     props: true

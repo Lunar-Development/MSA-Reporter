@@ -142,13 +142,34 @@ export default {
       this.currentDocument.Trainees.push(trainee)
 
       this.firebaseConnection.writeData('Subjects', 'Trainees', this.currentDocument)
-      this.updateCrewReports()
+      this.updateTraineesInCrews()
+      this.updateCrewsInSites()
     },
-    async updateCrewReports()
+    async updateTraineesInCrews()
     {
-      this.crewData = await this.firebaseConnection.readData('Subjects', 'Crews');
-      console.log(this.sessionDetails)
-      console.log(this.crewData)
+      let crewData = await this.firebaseConnection.readData('Subjects', 'Crews');
+      let correctCrewFound = crewData.Crews.filter(crew => this.sessionDetails.crew == Object.keys(crew)[0])[0];
+      let traineeInCrew = correctCrewFound[this.sessionDetails.crew].Trainees.filter(subj =>
+          Object.keys(subj)[0] == this.sessionDetails.trainee
+        )[0];
+      traineeInCrew[this.sessionDetails.trainee].reports.push(this.report)
+
+      this.firebaseConnection.writeData('Subjects', 'Crews', crewData)
+    },
+    async updateCrewsInSites()
+    {
+      let siteData = await this.firebaseConnection.readData('Subjects', 'Sites');
+      let correctSiteFound = siteData.Sites.filter(site => this.sessionDetails.site == Object.keys(site)[0])[0];
+      let correctCrewFound = correctSiteFound[this.sessionDetails.site].Crews.filter(subj =>
+          Object.keys(subj)[0] == this.sessionDetails.crew
+        )[0];
+      let correctTraineeFound = correctCrewFound[this.sessionDetails.crew].Trainees.filter(subj =>
+          Object.keys(subj)[0] == this.sessionDetails.trainee
+        )[0];
+        
+      correctTraineeFound[this.sessionDetails.trainee].reports.push(this.report);
+
+      this.firebaseConnection.writeData('Subjects', 'Sites', siteData)
     },
     holdObservations(value)
     {
@@ -194,7 +215,9 @@ export default {
         'trainee': paramArr[2],
         'trainer': paramArr[3],
         'session': paramArr[4],
-        'method': paramArr[5]
+        'method': paramArr[5],
+        'site': paramArr[6],
+        'crew': paramArr[7]
       }
     }
   }

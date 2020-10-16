@@ -16,7 +16,7 @@
         <input type="text" v-model="excavator" name="excavator" placeholder="Excavator">
         <select v-model="trainer">
           <option disabled value="">Select Trainer</option>
-          <option v-for="trainer in trainerData" :key="trainer[Object.keys(trainer)].id">{{Object.keys(trainer)[0]}}</option>
+          <option v-for="trainer in trainerData" :key="trainer[Object.keys(trainer)[0]].id">{{Object.keys(trainer)[0]}}</option>
         </select>
         <select v-model="trainee">
           <option disabled value="">Select Trainee</option>
@@ -29,7 +29,7 @@
           <option>Dig</option>
         </select>
       </div>
-      <router-link :to="{ name: 'Session', params: {excavator: excavator, truck: truck, trainee: trainee, trainer: trainer, method: method, session: session} }"
+      <router-link :to="{ name: 'Session', params: {excavator: excavator, truck: truck, trainee: trainee, trainer: trainer, method: method, session: session, site: site, crew: crew} }"
           tag="button">
             GO
         </router-link>
@@ -50,11 +50,29 @@ export default {
       truck: '',
       method: '',
       session: '',
+      site: '',
+      crew: '',
 
       siteData: {},
       crewData: {},
       traineeData: {},
       trainerData: {}
+    }
+  },
+  watch: {
+    trainee: {
+      immediate: false,
+      handler()
+      {
+        //get site and crew data from trainee
+        if (this.traineeData)
+        {
+          this.subject = this.traineeData.filter(subj => Object.keys(subj)[0] == this.trainee)[0]
+          this.site = this.subject[Object.keys(this.subject)[0]].site;
+          this.crew = this.subject[Object.keys(this.subject)[0]].crew;
+
+        }
+      }
     }
   },
   beforeMount(){
@@ -74,7 +92,6 @@ export default {
       this.siteData = this.siteData.Sites
       this.trainerData = this.trainerData.Trainers
       this.traineeData = this.traineeData.Trainees
-
     },
   }
 }
