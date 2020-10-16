@@ -53,7 +53,6 @@ export default {
       immediate: true,
       handler()
       {
-        console.log(this.tableValue)
       }
     },
     reportCollection: {
@@ -65,45 +64,50 @@ export default {
     }
   },
   methods: {
+    generateCrewReport()
+    {
+      console.log(this.crewReports.Crews)
+    },
+    generateSiteReport()
+    {
+
+    },
     async getDataFromDatabase() 
     {
       this.firebaseConnection = new Firebase();
 
       let traineeReports = await this.firebaseConnection.readData('Subjects', 'Trainees')
-      let crewReports = await this.firebaseConnection.readData('Subjects', 'Crews')
-      let siteReports = await this.firebaseConnection.readData('Subjects', 'Sites')
+      this.crewReports = await this.firebaseConnection.readData('Subjects', 'Crews')
+      this.siteReports = await this.firebaseConnection.readData('Subjects', 'Sites')
 
-      if (siteReports.Sites)
-      {
-        for (let i = 0; i < siteReports.Sites.length; i ++)
-        {
-          let siteName = Object.keys(siteReports.Sites[i])[0];
-          if (siteReports.Sites[i][siteName].reports)
-          {
-            let siteReportsCollection = siteReports.Sites[i][siteName].reports;
-            for (let j = 0; j < siteReportsCollection.length; j++)
-            {
-              this.reportCollection.Site.push(siteReportsCollection[j])
-            }
-          }
-        }
-      }
+      // if (siteReports.Sites)
+      // {
+      //   for (let i = 0; i < siteReports.Sites.length; i ++)
+      //   {
+      //     let siteName = Object.keys(siteReports.Sites[i])[0];
+      //     if (siteReports.Sites[i][siteName].reports)
+      //     {
+      //       let siteReportsCollection = siteReports.Sites[i][siteName].reports;
+      //       for (let j = 0; j < siteReportsCollection.length; j++)
+      //       {
+      //         this.reportCollection.Site.push(siteReportsCollection[j])
+      //       }
+      //     }
+      //   }
+      // }
       
-      if (crewReports.Crews)
-      {
-        for (let i = 0; i < crewReports.Crews.length; i ++)
-        {
-          let crewName = Object.keys(crewReports.Crews[i])[0];
-          if (crewReports.Crews[i][crewName].reports)
-          {
-            let crewReportsCollection = crewReports.Crews[i][crewName].reports;
-            for (let j = 0; j < crewReportsCollection.length; j++)
-            {
-              this.reportCollection.Crew.push(crewReportsCollection[j])
-            }
-          }
-        }
-      }
+      // if (crewReports.Crews)
+      // {
+      //   for (let i = 0; i < crewReports.Crews.length; i ++)
+      //   {
+      //     let crewName = Object.keys(crewReports.Crews[i])[0];
+      //     let trainees = crewReports.Crews[i][crewName].Trainees;
+      //     for (let j = 0; j < trainees.length; j++)
+      //     {
+      //       this.reportCollection.Crew
+      //     }
+      //   }
+      // }
 
       if (traineeReports.Trainees)
       {
