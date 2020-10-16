@@ -4,6 +4,10 @@ export default class Controller {
     {
 
     }
+    updateTraineeDocument(traineeName, target, newData)
+    {
+      //
+    }
 }
   
   // module.exports.Controller = Firebase;

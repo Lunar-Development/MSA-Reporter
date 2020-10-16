@@ -104,7 +104,6 @@ export default {
       observationSelect: {
         selected: false
       },
-
       report: {}
     }
   },
@@ -143,6 +142,13 @@ export default {
       this.currentDocument.Trainees.push(trainee)
 
       this.firebaseConnection.writeData('Subjects', 'Trainees', this.currentDocument)
+      this.updateCrewReports()
+    },
+    async updateCrewReports()
+    {
+      this.crewData = await this.firebaseConnection.readData('Subjects', 'Crews');
+      console.log(this.sessionDetails)
+      console.log(this.crewData)
     },
     holdObservations(value)
     {

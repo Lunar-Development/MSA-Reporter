@@ -73,7 +73,6 @@ export default {
           }
         }
       })
-        
       this.report = this.reports.filter(report => this.reportParams.id == report.id)[0];
     }
   }

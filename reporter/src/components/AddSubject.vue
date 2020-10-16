@@ -115,6 +115,24 @@ export default {
         break;
       }
     },
+    async updateTraineesInCrews()
+    {
+      //filter crewdata for correct crew
+      let correctCrewFound = this.crewData.Crews.filter(crew => this.crewSelected == Object.keys(crew)[0])[0];
+      //push traineedata to array
+      correctCrewFound[this.crewSelected].Trainees.push(this.traineeData.Trainees[this.traineeData.Trainees.length - 1]);
+      //overwrite trainees in crewdata
+      this.firebaseConnection.writeData('Subjects', 'Crews', this.crewData)
+    },
+    async updateCrewsInSites()
+    {
+      let latestCrew = this.crewData.Crews[(this.crewData.Crews.length - 1)];
+      // let targetSite = latestCrew.site;
+
+      let currentSiteCrews = this.siteData.Sites.filter(site => this.siteSelected == Object.keys(site)[0])[0];
+      currentSiteCrews[this.siteSelected].Crews.push(latestCrew);
+      this.firebaseConnection.writeData('Subjects', 'Sites', this.siteData)
+    },
     createObjectAndMergeWithDatabase() {
       if (this.validated) {
         switch(this.subjectName) {
@@ -135,6 +153,9 @@ export default {
 
             //TODO: submit to db
             this.writeDataToDatabase('Subjects', 'Trainees', this.traineeData)
+            
+            this.updateTraineesInCrews();
+            this.updateCrewsInSites();
           break;
           }
             
@@ -146,7 +167,7 @@ export default {
             let newCrew = {};
             newCrew[this.nameSelected] = {};
             newCrew[this.nameSelected].site = this.siteSelected;
-            newCrew[this.nameSelected].trainees = [];
+            newCrew[this.nameSelected].Trainees = [];
             newCrew[this.nameSelected].id = (parseInt(lastCrewID) + 1).toString();
 
             //push to crews array
@@ -154,6 +175,7 @@ export default {
 
             //TODO: submit to db
             this.writeDataToDatabase('Subjects', 'Crews', this.crewData)
+            this.updateCrewsInSites()
           break;
           }
             
@@ -177,7 +199,6 @@ export default {
 
           case 'Trainer': {
             //get last trainee ID
-            console.log(this.trainerData)
             let lastTrainerName = Object.keys(this.trainerData.Trainers[this.trainerData.Trainers.length - 1])
             let lastTrainerID = this.trainerData.Trainers[this.trainerData.Trainers.length - 1][lastTrainerName].id;
 

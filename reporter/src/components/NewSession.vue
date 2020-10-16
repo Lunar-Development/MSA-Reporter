@@ -20,7 +20,7 @@
         </select>
         <select v-model="trainee">
           <option disabled value="">Select Trainee</option>
-          <option v-for="trainee in traineeData" :key="trainee[Object.keys(trainee)].id">{{Object.keys(trainee)[0]}}</option>
+          <option v-for="trainee in traineeData" :key="trainee[Object.keys(trainee)[0]].id">{{Object.keys(trainee)[0]}}</option>
         </select>
         <input type="text" v-model="truck" name="truck" placeholder="Truck" />
         <input type="text" v-model="session" name="truck" placeholder="Session" />
@@ -50,7 +50,6 @@ export default {
       truck: '',
       method: '',
       session: '',
-
 
       siteData: {},
       crewData: {},
