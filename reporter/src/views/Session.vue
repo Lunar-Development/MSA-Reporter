@@ -200,7 +200,7 @@ export default {
     },
     getDate()
     {
-      this.date = new Date().toLocaleDateString("en-AUS");
+      this.date = new Date().toISOString().split('T')[0]
     },
     showSessionDetails() 
     {

@@ -2,8 +2,8 @@
   <div id="view-reports">
     <HeaderBar />
     <NavBar @clicked="handleTableValue"/>
-    <Generator v-if="tableValue != 'Trainee'" :subject="this.tableValue"/>
-    <ReportsTable :tableValue="this.tableValue"/>
+    <Generator v-if="tableValue != 'Trainee'" :reportData="reportData" :subject="this.tableValue"/>
+    <ReportsTable @storeReportData="storeReportData" :tableValue="this.tableValue"/>
   </div>
 </template>
 
@@ -23,12 +23,16 @@ export default {
   },
   data() {
     return {
-      tableValue: 'Trainee'
+      tableValue: 'Trainee',
+      reportData: ''
     }
   },
   methods: {
     handleTableValue(value) {
       this.tableValue = value;
+    },
+    storeReportData(value) {
+      this.reportData = value;
     }
   }
 }

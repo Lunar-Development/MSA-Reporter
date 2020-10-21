@@ -56,58 +56,31 @@ export default {
       }
     },
     reportCollection: {
-      immediate: true, 
-      handler () {
-        // console.log('values updated')
-        // console.log(this.reportCollection);
+      immediate: true,
+      handler()
+      {
+        this.$emit('storeReportData', this.reportCollection)
       }
     }
   },
   methods: {
-    generateCrewReport()
-    {
-      console.log(this.crewReports.Crews)
-    },
-    generateSiteReport()
-    {
-
-    },
     async getDataFromDatabase() 
     {
       this.firebaseConnection = new Firebase();
 
-      let traineeReports = await this.firebaseConnection.readData('Subjects', 'Trainees')
-      this.crewReports = await this.firebaseConnection.readData('Subjects', 'Crews')
-      this.siteReports = await this.firebaseConnection.readData('Subjects', 'Sites')
+      let traineeReports = await this.firebaseConnection.readData('Subjects', 'Trainees');
+      let crewReports = await this.firebaseConnection.readData('Subjects', 'Crews');
+      let siteReports = await this.firebaseConnection.readData('Subjects', 'Sites');
 
-      // if (siteReports.Sites)
-      // {
-      //   for (let i = 0; i < siteReports.Sites.length; i ++)
-      //   {
-      //     let siteName = Object.keys(siteReports.Sites[i])[0];
-      //     if (siteReports.Sites[i][siteName].reports)
-      //     {
-      //       let siteReportsCollection = siteReports.Sites[i][siteName].reports;
-      //       for (let j = 0; j < siteReportsCollection.length; j++)
-      //       {
-      //         this.reportCollection.Site.push(siteReportsCollection[j])
-      //       }
-      //     }
-      //   }
-      // }
+      if (siteReports.Sites)
+      {
+        this.reportCollection.Site = siteReports;
+      }
       
-      // if (crewReports.Crews)
-      // {
-      //   for (let i = 0; i < crewReports.Crews.length; i ++)
-      //   {
-      //     let crewName = Object.keys(crewReports.Crews[i])[0];
-      //     let trainees = crewReports.Crews[i][crewName].Trainees;
-      //     for (let j = 0; j < trainees.length; j++)
-      //     {
-      //       this.reportCollection.Crew
-      //     }
-      //   }
-      // }
+      if (crewReports.Crews)
+      {
+        this.reportCollection.Crew = crewReports;
+      }
 
       if (traineeReports.Trainees)
       {
